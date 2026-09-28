@@ -2,6 +2,7 @@ import logging
 import uuid
 from typing import Any, Dict, List, Optional
 
+from src.core.exceptions import AppException, NotFoundException
 from src.ml.llm.loader import llm_client
 from src.ml.llm.prompt_templates import (
     SYSTEM_PROMPT_UTC_ADVISOR,
@@ -14,8 +15,10 @@ from src.schemas.chat_schema import (
     ChatRequest,
     ChatResponseData,
     ChatSourceItem,
+    KnowledgeCreateRequest,
     KnowledgeItemSchema,
     KnowledgeSyncResponse,
+    KnowledgeUpdateRequest,
 )
 
 logger = logging.getLogger(__name__)
@@ -101,6 +104,38 @@ class ChatService:
     def get_knowledge_list(self) -> List[KnowledgeItemSchema]:
         rows = chat_repository.get_all_tri_thuc()
         return [KnowledgeItemSchema(**r) for r in rows]
+
+    def create_knowledge(self, req: KnowledgeCreateRequest) -> KnowledgeItemSchema:
+        item = chat_repository.create_tri_thuc(
+            chu_de=req.chu_de or "",
+            cau_hoi_mau=req.cau_hoi_mau,
+            noi_dung=req.noi_dung or "",
+            admin_id=req.ma_admin_phu_trach,
+        )
+        if not item:
+            raise AppException("Không thể thêm mới mục tri thức vào CSDL")
+        self.sync_knowledge()
+        return KnowledgeItemSchema(**item)
+
+    def update_knowledge(self, ma_tri_thuc: str, req: KnowledgeUpdateRequest) -> KnowledgeItemSchema:
+        item = chat_repository.update_tri_thuc(
+            ma_tri_thuc=ma_tri_thuc,
+            chu_de=req.chu_de,
+            cau_hoi_mau=req.cau_hoi_mau,
+            noi_dung=req.noi_dung,
+            trang_thai=req.trang_thai,
+        )
+        if not item:
+            raise NotFoundException(f"Không tìm thấy bản ghi tri thức {ma_tri_thuc}")
+        self.sync_knowledge()
+        return KnowledgeItemSchema(**item)
+
+    def delete_knowledge(self, ma_tri_thuc: str) -> bool:
+        ok = chat_repository.delete_tri_thuc(ma_tri_thuc)
+        if not ok:
+            raise NotFoundException(f"Không tìm thấy hoặc không thể xóa bản ghi {ma_tri_thuc}")
+        self.sync_knowledge()
+        return True
 
 
 chat_service = ChatService()

@@ -2,8 +2,11 @@ from fastapi import APIRouter, status
 from src.schemas.chat_schema import (
     ChatRequest,
     ChatResponse,
+    KnowledgeCreateRequest,
+    KnowledgeItemSchema,
     KnowledgeListResponse,
     KnowledgeSyncResponse,
+    KnowledgeUpdateRequest,
 )
 from src.services.chat_service import chat_service
 
@@ -44,3 +47,30 @@ async def list_knowledge():
         total=len(items),
         data=items,
     )
+
+
+@router.post(
+    "/knowledge",
+    response_model=KnowledgeItemSchema,
+    status_code=status.HTTP_201_CREATED,
+)
+async def create_knowledge(request: KnowledgeCreateRequest):
+    return chat_service.create_knowledge(request)
+
+
+@router.put(
+    "/knowledge/{ma_tri_thuc}",
+    response_model=KnowledgeItemSchema,
+    status_code=status.HTTP_200_OK,
+)
+async def update_knowledge(ma_tri_thuc: str, request: KnowledgeUpdateRequest):
+    return chat_service.update_knowledge(ma_tri_thuc, request)
+
+
+@router.delete(
+    "/knowledge/{ma_tri_thuc}",
+    status_code=status.HTTP_200_OK,
+)
+async def delete_knowledge(ma_tri_thuc: str):
+    chat_service.delete_knowledge(ma_tri_thuc)
+    return {"success": True, "message": f"Đã xóa thành công mục tri thức {ma_tri_thuc}"}
