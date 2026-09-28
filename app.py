@@ -17,9 +17,13 @@ logging.basicConfig(
 logger = logging.getLogger("admission_ai_ml")
 
 
+from src.repositories.major_repository import major_repository
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info(f"Khởi động {settings.PROJECT_NAME} v{settings.VERSION}...")
+    major_repository.load_cache()
     yield
     logger.info(f"Đang dừng {settings.PROJECT_NAME}...")
 
