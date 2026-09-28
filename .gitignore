@@ -29,3 +29,10 @@ htmlcov/
 
 # OS
 .DS_Store
+
+# planning & rules
+RULES.md
+TASKS.md
+DATABASE_SCHEMA.md
+SPRINT_ALIGNMENT_SUMMARY.md
+
