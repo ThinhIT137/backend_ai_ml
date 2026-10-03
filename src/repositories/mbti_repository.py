@@ -82,7 +82,12 @@ class MBTIRepository:
         try:
             with get_db_connection() as conn:
                 with conn.cursor() as cur:
-                    cur.execute(query, (new_id, cccd, session_id, nhom_tinh_cach, goi_y_str, now, now))
+                    target_cccd = None
+                    if cccd:
+                        cur.execute("SELECT 1 FROM thi_sinh WHERE cccd = %s LIMIT 1;", (cccd,))
+                        if cur.fetchone():
+                            target_cccd = cccd
+                    cur.execute(query, (new_id, target_cccd, session_id, nhom_tinh_cach, goi_y_str, now, now))
                     conn.commit()
                     return new_id
         except Exception as e:
@@ -101,57 +106,98 @@ class MBTIRepository:
                     cur.execute(query, (ma_ket_qua,))
                     r = cur.fetchone()
                     if r:
-                        goi_y = r[4]
-                        if isinstance(goi_y, str):
+                        raw_payload = r[4]
+                        if isinstance(raw_payload, str):
                             try:
-                                goi_y = json.loads(goi_y)
+                                raw_payload = json.loads(raw_payload)
                             except Exception:
-                                pass
+                                raw_payload = {}
+                        if isinstance(raw_payload, dict):
+                            result = dict(raw_payload)
+                            result["result_id"] = str(r[0])
+                            result["cccd"] = r[1] or result.get("cccd")
+                            result["session_id"] = r[2]
+                            result["mbti_type"] = r[3]
+                            return result
                         return {
-                            "ma_ket_qua": str(r[0]),
+                            "result_id": str(r[0]),
                             "cccd": r[1],
                             "session_id": r[2],
-                            "nhom_tinh_cach": r[3],
-                            "goi_y_nganh": goi_y,
-                            "thoi_gian_thuc_hien": str(r[5]) if r[5] else None,
-                            "create_at": str(r[6]) if r[6] else None,
+                            "mbti_type": r[3],
+                            "recommended_majors": raw_payload if isinstance(raw_payload, list) else [],
+                            "type_name": f"Nhóm tính cách {r[3]}",
+                            "archetype_group": "Đại học Giao thông Vận tải",
+                            "personality_summary": "",
+                            "strengths": [],
+                            "weaknesses": [],
+                            "work_style": "",
+                            "suitable_environment": "",
+                            "dimension_scores": {
+                                "extraversion": 50.0, "introversion": 50.0,
+                                "sensing": 50.0, "intuition": 50.0,
+                                "thinking": 50.0, "feeling": 50.0,
+                                "judging": 50.0, "perceiving": 50.0,
+                            },
                         }
         except Exception as e:
             logger.error(f"Lỗi khi truy vấn kết quả trắc nghiệm {ma_ket_qua}: {str(e)}")
         return None
 
-    def get_history_by_session(self, session_id: str) -> List[Dict[str, Any]]:
+    def get_history(self, session_id: Optional[str] = None, cccd: Optional[str] = None) -> List[Dict[str, Any]]:
+        conditions = []
+        params = []
+        if session_id:
+            conditions.append("session_id = %s")
+            params.append(session_id)
+        if cccd:
+            conditions.append("(cccd = %s OR goi_y_nganh::text LIKE %s)")
+            params.append(cccd)
+            params.append(f'%"{cccd}"%')
+        if not conditions:
+            return []
+
+        where_clause = " OR ".join(conditions)
         query = (
-            "SELECT ma_ket_qua, cccd, session_id, nhom_tinh_cach, goi_y_nganh, thoi_gian_thuc_hien, create_at "
-            "FROM ket_qua_trac_nghiem "
-            "WHERE session_id = %s "
-            "ORDER BY thoi_gian_thuc_hien DESC;"
+            f"SELECT ma_ket_qua, cccd, session_id, nhom_tinh_cach, goi_y_nganh, thoi_gian_thuc_hien, create_at "
+            f"FROM ket_qua_trac_nghiem "
+            f"WHERE {where_clause} "
+            f"ORDER BY thoi_gian_thuc_hien DESC;"
         )
         try:
             with get_db_connection() as conn:
                 with conn.cursor() as cur:
-                    cur.execute(query, (session_id,))
+                    cur.execute(query, tuple(params))
                     rows = cur.fetchall()
                     result = []
                     for r in rows:
-                        goi_y = r[4]
-                        if isinstance(goi_y, str):
+                        raw = r[4]
+                        if isinstance(raw, str):
                             try:
-                                goi_y = json.loads(goi_y)
+                                raw = json.loads(raw)
                             except Exception:
-                                pass
+                                raw = {}
+                        type_name = raw.get("type_name") if isinstance(raw, dict) else f"Nhóm {r[3]}"
+                        archetype_group = raw.get("archetype_group") if isinstance(raw, dict) else None
+                        record_cccd = r[1] or (raw.get("cccd") if isinstance(raw, dict) else None)
+                        majors = []
+                        if isinstance(raw, dict) and "recommended_majors" in raw:
+                            majors = [m.get("major_name", "") for m in raw["recommended_majors"][:3]]
+                        elif isinstance(raw, list):
+                            majors = [m.get("major_name", "") for m in raw[:3]]
+
                         result.append({
-                            "ma_ket_qua": str(r[0]),
-                            "cccd": r[1],
+                            "result_id": str(r[0]),
+                            "cccd": record_cccd,
                             "session_id": r[2],
-                            "nhom_tinh_cach": r[3],
-                            "goi_y_nganh": goi_y,
+                            "mbti_type": r[3],
+                            "type_name": type_name,
+                            "archetype_group": archetype_group,
                             "thoi_gian_thuc_hien": str(r[5]) if r[5] else None,
-                            "create_at": str(r[6]) if r[6] else None,
+                            "top_majors": [m for m in majors if m],
                         })
                     return result
         except Exception as e:
-            logger.error(f"Lỗi khi lấy lịch sử trắc nghiệm cho session {session_id}: {str(e)}")
+            logger.error(f"Lỗi khi lấy lịch sử trắc nghiệm: {str(e)}")
             return []
 
 

@@ -4,6 +4,7 @@ from src.core.exceptions import NotFoundException, ValidationException
 from src.ml.mbti.scorer import calculate_mbti_result
 from src.repositories.mbti_repository import mbti_repository
 from src.schemas.mbti_schema import (
+    MBTIHistoryItem,
     MBTIQuestion,
     MBTIResultData,
     MBTISubmitRequest,
@@ -54,20 +55,11 @@ class MBTIService:
             include_ai_advice=request.include_ai_advice,
         )
 
-        recommended_data = [
-            {
-                "major_code": m.major_code,
-                "major_name": m.major_name,
-                "match_score": m.match_score,
-                "reason": m.reason,
-            }
-            for m in result.recommended_majors
-        ]
-
+        full_report_data = result.model_dump(mode="json")
         saved_id = mbti_repository.save_result(
             session_id=result.session_id or "anonymous_session",
             nhom_tinh_cach=result.mbti_type,
-            goi_y_nganh=recommended_data,
+            goi_y_nganh=full_report_data,
             cccd=result.cccd,
         )
         result.result_id = saved_id
@@ -77,16 +69,19 @@ class MBTIService:
         )
         return result
 
-    def get_result(self, result_id: str) -> Dict[str, Any]:
-        result = mbti_repository.get_result_by_id(result_id)
-        if not result:
+    def get_result(self, result_id: str) -> MBTIResultData:
+        data = mbti_repository.get_result_by_id(result_id)
+        if not data:
             raise NotFoundException(f"Không tìm thấy kết quả trắc nghiệm với mã: {result_id}")
-        return result
+        return MBTIResultData.model_validate(data)
 
-    def get_history(self, session_id: str) -> List[Dict[str, Any]]:
-        if not session_id:
-            raise ValidationException("Thiếu tham số session_id")
-        return mbti_repository.get_history_by_session(session_id)
+    def get_history(
+        self, session_id: Optional[str] = None, cccd: Optional[str] = None
+    ) -> List[MBTIHistoryItem]:
+        if not session_id and not cccd:
+            raise ValidationException("Cần cung cấp ít nhất session_id hoặc cccd để tra cứu lịch sử")
+        items = mbti_repository.get_history(session_id=session_id, cccd=cccd)
+        return [MBTIHistoryItem.model_validate(i) for i in items]
 
 
 mbti_service = MBTIService()

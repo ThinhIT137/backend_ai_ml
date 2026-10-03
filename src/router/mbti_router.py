@@ -1,5 +1,8 @@
+from typing import Optional
 from fastapi import APIRouter, status
 from src.schemas.mbti_schema import (
+    MBTIDetailResponse,
+    MBTIHistoryResponse,
     MBTIQuestionListResponse,
     MBTIResultResponse,
     MBTISubmitRequest,
@@ -35,13 +38,24 @@ async def submit_mbti(request: MBTISubmitRequest):
     )
 
 
-@router.get("/result/{result_id}")
+@router.get(
+    "/result/{result_id}",
+    response_model=MBTIDetailResponse,
+    status_code=status.HTTP_200_OK,
+)
 async def get_mbti_result(result_id: str):
     data = mbti_service.get_result(result_id)
-    return {"success": True, "data": data}
+    return MBTIDetailResponse(success=True, data=data)
 
 
-@router.get("/history")
-async def get_mbti_history(session_id: str):
-    history = mbti_service.get_history(session_id)
-    return {"success": True, "total": len(history), "data": history}
+@router.get(
+    "/history",
+    response_model=MBTIHistoryResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def get_mbti_history(
+    session_id: Optional[str] = None,
+    cccd: Optional[str] = None,
+):
+    history = mbti_service.get_history(session_id=session_id, cccd=cccd)
+    return MBTIHistoryResponse(success=True, total=len(history), data=history)
