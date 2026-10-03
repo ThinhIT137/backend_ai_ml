@@ -33,3 +33,15 @@ async def submit_mbti(request: MBTISubmitRequest):
         success=True,
         data=result,
     )
+
+
+@router.get("/result/{result_id}")
+async def get_mbti_result(result_id: str):
+    data = mbti_service.get_result(result_id)
+    return {"success": True, "data": data}
+
+
+@router.get("/history")
+async def get_mbti_history(session_id: str):
+    history = mbti_service.get_history(session_id)
+    return {"success": True, "total": len(history), "data": history}

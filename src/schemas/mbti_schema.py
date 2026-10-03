@@ -93,6 +93,7 @@ class MajorRecommendation(BaseModel):
 
 
 class MBTIResultData(BaseModel):
+    result_id: Optional[str] = Field(None, description="Mã kết quả trắc nghiệm trong CSDL ket_qua_trac_nghiem")
     student_name: Optional[str] = Field(None, description="Tên thí sinh")
     session_id: Optional[str] = Field(None, description="Mã phiên làm bài (tương thích Supabase ket_qua_trac_nghiem)")
     cccd: Optional[str] = Field(None, description="CCCD thí sinh")
