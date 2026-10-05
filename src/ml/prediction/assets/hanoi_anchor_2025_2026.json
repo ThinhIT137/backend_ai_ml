@@ -1,0 +1,1438 @@
+[
+  {
+    "ma_chuong_trinh_2026": "GHA01",
+    "ma_chuong_trinh_2025": "7220201",
+    "ten_chuong_trinh": "Ngôn ngữ Anh",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "D01",
+      "D09",
+      "D10"
+    ],
+    "chi_tieu_2025": 60,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 25.33,
+    "diem_chuan_2026_pt1": 22.7,
+    "diem_chuan_2025_all": {
+      "PT1": 25.33,
+      "PT2": 26.88,
+      "PT3": 89.77
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 22.7,
+      "PT2": 26.57,
+      "PT3": 80.24
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA02",
+    "ma_chuong_trinh_2025": "7460112",
+    "ten_chuong_trinh": "Toán ứng dụng (Chuyên ngành Toán tin ứng dụng)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 70,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 24.15,
+    "diem_chuan_2026_pt1": 24.17,
+    "diem_chuan_2025_all": {
+      "PT1": 24.15,
+      "PT2": 26.09,
+      "PT4": 57.14
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.17,
+      "PT2": 27.33,
+      "PT4": 55.8
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA03",
+    "ma_chuong_trinh_2025": "7310101",
+    "ten_chuong_trinh": "Kinh tế (Chuyên ngành: Kinh tế và quản lý đầu tư, Kinh tế bưu chính viễn thông)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 85,
+    "chi_tieu_2026": 75,
+    "diem_chuan_2025_pt1": 25.15,
+    "diem_chuan_2026_pt1": 24.09,
+    "diem_chuan_2025_all": {
+      "PT1": 25.15,
+      "PT2": 26.76,
+      "PT3": 88.69
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.09,
+      "PT2": 27.29,
+      "PT3": 88.1
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA04",
+    "ma_chuong_trinh_2025": "7340101",
+    "ten_chuong_trinh": "Quản trị kinh doanh",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 100,
+    "chi_tieu_2026": 70,
+    "diem_chuan_2025_pt1": 25.41,
+    "diem_chuan_2026_pt1": 24.01,
+    "diem_chuan_2025_all": {
+      "PT1": 25.41,
+      "PT2": 26.94,
+      "PT3": 90.25
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.01,
+      "PT2": 27.25,
+      "PT3": 87.58
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA04QT",
+    "ma_chuong_trinh_2025": "7340101 QT",
+    "ten_chuong_trinh": "Quản trị kinh doanh (Chương trình CLC Quản trị kinh doanh Việt - Anh)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 90,
+    "diem_chuan_2025_pt1": 22.63,
+    "diem_chuan_2026_pt1": 20.85,
+    "diem_chuan_2025_all": {
+      "PT1": 22.63,
+      "PT2": 25.08,
+      "PT3": 77.94
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 20.85,
+      "PT2": 25.35,
+      "PT3": 72.12
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA05",
+    "ma_chuong_trinh_2025": "7340201",
+    "ten_chuong_trinh": "Tài chính - Ngân hàng",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 60,
+    "chi_tieu_2026": 70,
+    "diem_chuan_2025_pt1": 25.86,
+    "diem_chuan_2026_pt1": 24.34,
+    "diem_chuan_2025_all": {
+      "PT1": 25.86,
+      "PT2": 27.23,
+      "PT3": 92.93
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.34,
+      "PT2": 27.42,
+      "PT3": 89.74
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA06",
+    "ma_chuong_trinh_2025": "7340301",
+    "ten_chuong_trinh": "Kế toán (Chuyên ngành Kế toán tổng hợp)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 100,
+    "chi_tieu_2026": 70,
+    "diem_chuan_2025_pt1": 25.41,
+    "diem_chuan_2026_pt1": 24.65,
+    "diem_chuan_2025_all": {
+      "PT1": 25.41,
+      "PT2": 26.93,
+      "PT3": 90.22
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.65,
+      "PT2": 27.58,
+      "PT3": 91.76
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA06QT",
+    "ma_chuong_trinh_2025": "7340301 QT",
+    "ten_chuong_trinh": "Kế toán (Chương trình CLC Kế toán tổng hợp Việt - Anh)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 90,
+    "chi_tieu_2026": 90,
+    "diem_chuan_2025_pt1": 21.15,
+    "diem_chuan_2026_pt1": 21.5,
+    "diem_chuan_2025_all": {
+      "PT1": 21.15,
+      "PT2": 24.09,
+      "PT3": 72.75
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 21.5,
+      "PT2": 25.87,
+      "PT3": 74.25
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA07",
+    "ma_chuong_trinh_2025": "7810103",
+    "ten_chuong_trinh": "Quản trị dịch vụ du lịch và lữ hành",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 100,
+    "chi_tieu_2026": 70,
+    "diem_chuan_2025_pt1": 24.02,
+    "diem_chuan_2026_pt1": 22.84,
+    "diem_chuan_2025_all": {
+      "PT1": 24.02,
+      "PT2": 26.0,
+      "PT3": 83.38
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 22.84,
+      "PT2": 26.64,
+      "PT3": 80.99
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA08",
+    "ma_chuong_trinh_2025": "7840101",
+    "ten_chuong_trinh": "Khai thác vận tải (Chuyên ngành: Vận tải - Thương mại quốc tế, Quy hoạch và quản lý GTVT đô thị, Vận tải - Kinh tế đường bộ và thành phố, Vận tải đường sắt)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 120,
+    "chi_tieu_2026": 120,
+    "diem_chuan_2025_pt1": 24.99,
+    "diem_chuan_2026_pt1": 24.83,
+    "diem_chuan_2025_all": {
+      "PT1": 24.99,
+      "PT2": 26.65,
+      "PT3": 87.82
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.83,
+      "PT2": 27.7,
+      "PT3": 92.94
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA08DS",
+    "ma_chuong_trinh_2025": "7840101 DS",
+    "ten_chuong_trinh": "Khai thác vận tải (Chuyên ngành: Khai thác và quản lý đường sắt tốc độ cao, Khai thác và quản lý đường sắt đô thị)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 60,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 21.29,
+    "diem_chuan_2026_pt1": 23.7,
+    "diem_chuan_2025_all": {
+      "PT1": 21.29,
+      "PT2": 24.19,
+      "PT3": 73.25
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 23.7,
+      "PT2": 27.09,
+      "PT3": 85.63
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA09",
+    "ma_chuong_trinh_2025": "7840104",
+    "ten_chuong_trinh": "Kinh tế vận tải (Chuyên ngành: Kinh tế vận tải ô tô, Kinh tế vận tải hàng không, Kinh tế vận tải đường sắt, Kinh tế vận tải thuỷ bộ)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 155,
+    "chi_tieu_2026": 140,
+    "diem_chuan_2025_pt1": 25.07,
+    "diem_chuan_2026_pt1": 24.74,
+    "diem_chuan_2025_all": {
+      "PT1": 25.07,
+      "PT2": 26.7,
+      "PT3": 88.17
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.74,
+      "PT2": 27.63,
+      "PT3": 92.35
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA10",
+    "ma_chuong_trinh_2025": "7510605",
+    "ten_chuong_trinh": "Logistics và quản lý chuỗi cung ứng",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 100,
+    "chi_tieu_2026": 70,
+    "diem_chuan_2025_pt1": 27.52,
+    "diem_chuan_2026_pt1": 26.44,
+    "diem_chuan_2025_all": {
+      "PT1": 27.52,
+      "PT2": 28.34,
+      "PT3": 102.95
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 26.44,
+      "PT3": 103.48
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA10QT",
+    "ma_chuong_trinh_2025": "7510605",
+    "ten_chuong_trinh": "Logistics và quản lý chuỗi cung ứng (Chương trình CLC Logistics và quản lý chuỗi cung ứng Việt - Anh)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01"
+    ],
+    "chi_tieu_2025": 100,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 27.52,
+    "diem_chuan_2026_pt1": 25.62,
+    "diem_chuan_2025_all": {
+      "PT1": 27.52,
+      "PT2": 28.34,
+      "PT3": 102.95
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 25.62,
+      "PT2": 28.33,
+      "PT3": 98.11
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA11",
+    "ma_chuong_trinh_2025": "7580301",
+    "ten_chuong_trinh": "Kinh tế xây dựng (Chuyên ngành: Kinh tế và quản lý cơ sở hạ tầng, Kinh tế và quản lý đầu tư xây dựng)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 110,
+    "chi_tieu_2026": 120,
+    "diem_chuan_2025_pt1": 24.08,
+    "diem_chuan_2026_pt1": 24.2,
+    "diem_chuan_2025_all": {
+      "PT1": 24.08,
+      "PT2": 26.04,
+      "PT3": 83.65
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.2,
+      "PT2": 27.35,
+      "PT3": 88.82
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA11QT",
+    "ma_chuong_trinh_2025": "7580301 QT",
+    "ten_chuong_trinh": "Kinh tế xây dựng (Chương trình CLC Kinh tế xây dựng công trình giao thông Việt - Anh)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 20.52,
+    "diem_chuan_2026_pt1": 21.98,
+    "diem_chuan_2025_all": {
+      "PT1": 20.52,
+      "PT2": 23.67,
+      "PT3": 70.57
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 21.98,
+      "PT2": 26.19,
+      "PT3": 76.35,
+      "PT4": 50.39
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA12",
+    "ma_chuong_trinh_2025": "7580302",
+    "ten_chuong_trinh": "Quản lý xây dựng (Chuyên ngành Quản lý dự án)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 60,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 23.24,
+    "diem_chuan_2026_pt1": 23.66,
+    "diem_chuan_2025_all": {
+      "PT1": 23.24,
+      "PT2": 25.48,
+      "PT3": 80.06
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 23.66,
+      "PT2": 27.07,
+      "PT3": 85.41
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA12QT",
+    "ma_chuong_trinh_2025": "7580302 QT",
+    "ten_chuong_trinh": "Quản lý xây dựng (Chương trình CLC Quản lý xây dựng Việt - Anh)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 16.36,
+    "diem_chuan_2026_pt1": 20.43,
+    "diem_chuan_2025_all": {
+      "PT1": 16.36,
+      "PT2": 20.89,
+      "PT3": 57.65
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 20.43,
+      "PT2": 25.02,
+      "PT3": 70.74,
+      "PT4": 47.25
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA13",
+    "ma_chuong_trinh_2025": "7480101",
+    "ten_chuong_trinh": "Khoa học máy tính",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 60,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 24.35,
+    "diem_chuan_2026_pt1": 24.93,
+    "diem_chuan_2025_all": {
+      "PT1": 24.35,
+      "PT4": 57.7
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.93,
+      "PT3": 93.6,
+      "PT4": 58.19
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA14",
+    "ma_chuong_trinh_2025": "7480201",
+    "ten_chuong_trinh": "Công nghệ thông tin",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 210,
+    "chi_tieu_2026": 180,
+    "diem_chuan_2025_pt1": 23.7,
+    "diem_chuan_2026_pt1": 24.2,
+    "diem_chuan_2025_all": {
+      "PT1": 23.7,
+      "PT4": 55.89
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.2,
+      "PT3": 88.82,
+      "PT4": 55.89
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA14QT",
+    "ma_chuong_trinh_2025": "7480201 QT",
+    "ten_chuong_trinh": "Công nghệ thông tin (Chương trình CLC Công nghệ thông tin Việt - Anh)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 90,
+    "chi_tieu_2026": 90,
+    "diem_chuan_2025_pt1": 23.1,
+    "diem_chuan_2026_pt1": 22.44,
+    "diem_chuan_2025_all": {
+      "PT1": 23.1,
+      "PT2": 25.39,
+      "PT4": 54.47
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 22.44,
+      "PT2": 26.43,
+      "PT3": 78.83,
+      "PT4": 51.38
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA15",
+    "ma_chuong_trinh_2025": "7480101",
+    "ten_chuong_trinh": "Trí tuệ nhân tạo",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 60,
+    "chi_tieu_2026": 40,
+    "diem_chuan_2025_pt1": 24.35,
+    "diem_chuan_2026_pt1": 24.41,
+    "diem_chuan_2025_all": {
+      "PT1": 24.35,
+      "PT4": 57.7
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.41,
+      "PT3": 90.19,
+      "PT4": 56.55
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA16",
+    "ma_chuong_trinh_2025": "7520103",
+    "ten_chuong_trinh": "Kỹ thuật cơ khí (Chuyên ngành: Công nghệ chế tạo cơ khí, Tự động hoá thiết kế cơ khí)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D07",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 150,
+    "chi_tieu_2026": 75,
+    "diem_chuan_2025_pt1": 25.95,
+    "diem_chuan_2026_pt1": 26.01,
+    "diem_chuan_2025_all": {
+      "PT1": 25.95,
+      "PT2": 27.29,
+      "PT4": 63.29
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 26.01,
+      "PT3": 100.67,
+      "PT4": 61.86
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA16QT",
+    "ma_chuong_trinh_2025": "7520103 QT",
+    "ten_chuong_trinh": "Kỹ thuật cơ khí (Chương trình CLC Tự động hóa thiết kế cơ khí)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D07",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 90,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 22.78,
+    "diem_chuan_2026_pt1": 24.38,
+    "diem_chuan_2025_all": {
+      "PT1": 22.78,
+      "PT2": 25.18,
+      "PT4": 53.8
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.38,
+      "PT2": 27.44,
+      "PT3": 90.0,
+      "PT4": 56.46
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA17",
+    "ma_chuong_trinh_2025": "7520114",
+    "ten_chuong_trinh": "Kỹ thuật cơ điện tử",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D07",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 70,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 24.93,
+    "diem_chuan_2026_pt1": 26.23,
+    "diem_chuan_2025_all": {
+      "PT1": 24.93,
+      "PT4": 59.3
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 26.23,
+      "PT4": 62.61
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA18",
+    "ma_chuong_trinh_2025": "7520115",
+    "ten_chuong_trinh": "Kỹ thuật nhiệt (Chuyên ngành Kỹ thuật nhiệt lạnh và điều hoà không khí)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D07",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 70,
+    "chi_tieu_2026": 70,
+    "diem_chuan_2025_pt1": 24.71,
+    "diem_chuan_2026_pt1": 25.45,
+    "diem_chuan_2025_all": {
+      "PT1": 24.71,
+      "PT2": 26.46,
+      "PT4": 58.68
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 25.45,
+      "PT2": 28.19,
+      "PT3": 97.0,
+      "PT4": 59.93
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA19",
+    "ma_chuong_trinh_2025": "7520116",
+    "ten_chuong_trinh": "Kỹ thuật cơ khí động lực (Chuyên ngành: Kỹ thuật phương tiện đường sắt, Máy xây dựng, Kỹ thuật máy động lực)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D07",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 150,
+    "chi_tieu_2026": 150,
+    "diem_chuan_2025_pt1": 23.82,
+    "diem_chuan_2026_pt1": 24.56,
+    "diem_chuan_2025_all": {
+      "PT1": 23.82,
+      "PT2": 25.87,
+      "PT4": 56.22
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.56,
+      "PT2": 27.54,
+      "PT3": 91.18,
+      "PT4": 57.02
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA19DS",
+    "ma_chuong_trinh_2025": "7520116 DS",
+    "ten_chuong_trinh": "Kỹ thuật cơ khí động lực (Chuyên ngành Kỹ thuật phương tiện đường sắt tốc độ cao)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 45,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 22.63,
+    "diem_chuan_2026_pt1": 24.23,
+    "diem_chuan_2025_all": {
+      "PT1": 22.63,
+      "PT2": 25.08,
+      "PT4": 53.49
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.23,
+      "PT2": 27.36,
+      "PT3": 89.02,
+      "PT4": 55.98
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA20",
+    "ma_chuong_trinh_2025": "7520130",
+    "ten_chuong_trinh": "Kỹ thuật ô tô",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D07",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 160,
+    "chi_tieu_2026": 180,
+    "diem_chuan_2025_pt1": 23.66,
+    "diem_chuan_2026_pt1": 24.76,
+    "diem_chuan_2025_all": {
+      "PT1": 23.66,
+      "PT4": 55.78
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.76,
+      "PT3": 92.48,
+      "PT4": 57.65
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA20QT",
+    "ma_chuong_trinh_2025": "7520130",
+    "ten_chuong_trinh": "Kỹ thuật ô tô (Chương trình CLC Kỹ thuật ô tô)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D07",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 160,
+    "chi_tieu_2026": 90,
+    "diem_chuan_2025_pt1": 23.66,
+    "diem_chuan_2026_pt1": 22.79,
+    "diem_chuan_2025_all": {
+      "PT1": 23.66,
+      "PT4": 55.78
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 22.79,
+      "PT2": 26.62,
+      "PT3": 80.72,
+      "PT4": 52.14
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA21",
+    "ma_chuong_trinh_2025": "7520201",
+    "ten_chuong_trinh": "Kỹ thuật điện (Chuyên ngành: Trang bị điện trong công nghiệp và GTVT, Hệ thống điện trong giao thông và công nghiệp)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 80,
+    "chi_tieu_2026": 70,
+    "diem_chuan_2025_pt1": 23.88,
+    "diem_chuan_2026_pt1": 25.63,
+    "diem_chuan_2025_all": {
+      "PT1": 23.88,
+      "PT3": 82.76,
+      "PT4": 56.39
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 25.63,
+      "PT3": 98.18,
+      "PT4": 60.55
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA21DS",
+    "ma_chuong_trinh_2025": "7520201 DS",
+    "ten_chuong_trinh": "Kỹ thuật điện (Chuyên ngành Hệ thống điện đường sắt tốc độ cao, đường sắt đô thị)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 45,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 23.39,
+    "diem_chuan_2026_pt1": 24.9,
+    "diem_chuan_2025_all": {
+      "PT1": 23.39,
+      "PT2": 25.58,
+      "PT4": 55.07
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.9,
+      "PT2": 27.75,
+      "PT3": 93.4,
+      "PT4": 58.09
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA22",
+    "ma_chuong_trinh_2025": "7520207",
+    "ten_chuong_trinh": "Kỹ thuật điện tử - viễn thông (Chuyên ngành: Kỹ thuật viễn thông, Kỹ thuật thông tin và truyền thông)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 200,
+    "chi_tieu_2026": 140,
+    "diem_chuan_2025_pt1": 23.67,
+    "diem_chuan_2026_pt1": 24.87,
+    "diem_chuan_2025_all": {
+      "PT1": 23.67,
+      "PT3": 81.8,
+      "PT4": 55.8
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.87,
+      "PT3": 93.2,
+      "PT4": 58.0
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA22BD",
+    "ma_chuong_trinh_2025": "7520207",
+    "ten_chuong_trinh": "Kỹ thuật điện tử - viễn thông (Chuyên ngành Kỹ thuật điện tử và tin học công nghiệp)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 200,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 23.67,
+    "diem_chuan_2026_pt1": 25.0,
+    "diem_chuan_2025_all": {
+      "PT1": 23.67,
+      "PT3": 81.8,
+      "PT4": 55.8
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 25.0,
+      "PT3": 94.06,
+      "PT4": 58.41
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA22QT",
+    "ma_chuong_trinh_2025": "7520207",
+    "ten_chuong_trinh": "Kỹ thuật điện tử - viễn thông (Chương trình CLC Kỹ thuật viễn thông)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 200,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 23.67,
+    "diem_chuan_2026_pt1": 23.26,
+    "diem_chuan_2025_all": {
+      "PT1": 23.67,
+      "PT3": 81.8,
+      "PT4": 55.8
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 23.26,
+      "PT2": 26.86,
+      "PT3": 83.25,
+      "PT4": 53.16
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA23",
+    "ma_chuong_trinh_2025": "7520216",
+    "ten_chuong_trinh": "Kỹ thuật điều khiển và tự động hoá (Chuyên ngành: Tự động hoá, Kỹ thuật điều khiển và tự động hoá giao thông)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 130,
+    "chi_tieu_2026": 130,
+    "diem_chuan_2025_pt1": 25.42,
+    "diem_chuan_2026_pt1": 26.5,
+    "diem_chuan_2025_all": {
+      "PT1": 25.42,
+      "PT3": 90.3,
+      "PT4": 61.12
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 26.5,
+      "PT3": 103.87,
+      "PT4": 63.54
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA23DS",
+    "ma_chuong_trinh_2025": "7520216 DS",
+    "ten_chuong_trinh": "Kỹ thuật điều khiển và tự động hoá (Chuyên ngành Điều khiển và thông tin tín hiệu đường sắt hiện đại)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 45,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 24.39,
+    "diem_chuan_2026_pt1": 25.52,
+    "diem_chuan_2025_all": {
+      "PT1": 24.39,
+      "PT2": 26.25,
+      "PT4": 57.8
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 25.52,
+      "PT2": 28.25,
+      "PT3": 97.46,
+      "PT4": 60.17
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA23TM",
+    "ma_chuong_trinh_2025": "7520216-GTTM",
+    "ten_chuong_trinh": "Kỹ thuật điều khiển và tự động hoá (Chuyên ngành Hệ thống giao thông thông minh)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 40,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 25.56,
+    "diem_chuan_2026_pt1": 25.78,
+    "diem_chuan_2025_all": {
+      "PT1": 25.56,
+      "PT2": 27.03,
+      "PT4": 61.69
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 25.78,
+      "PT3": 99.16,
+      "PT4": 61.07
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA24",
+    "ma_chuong_trinh_2025": "7520107",
+    "ten_chuong_trinh": "Kỹ thuật robot (Chuyên ngành Kỹ thuật robot và trí tuệ nhân tạo)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 40,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 24.2,
+    "diem_chuan_2026_pt1": 25.18,
+    "diem_chuan_2025_all": {
+      "PT1": 24.2,
+      "PT3": 84.22,
+      "PT4": 57.28
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 25.18,
+      "PT3": 95.23,
+      "PT4": 59.0
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA25",
+    "ma_chuong_trinh_2025": "7520320",
+    "ten_chuong_trinh": "Kỹ thuật môi trường",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "B00",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 21.38,
+    "diem_chuan_2026_pt1": 22.21,
+    "diem_chuan_2025_all": {
+      "PT1": 21.38,
+      "PT2": 24.24,
+      "PT4": 50.87
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 22.21,
+      "PT2": 26.31,
+      "PT4": 50.88
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA26",
+    "ma_chuong_trinh_2025": "7580215",
+    "ten_chuong_trinh": "Kỹ thuật an toàn giao thông",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 21.44,
+    "diem_chuan_2026_pt1": 21.5,
+    "diem_chuan_2025_all": {
+      "PT1": 21.44,
+      "PT2": 24.28,
+      "PT4": 51.0
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 21.5,
+      "PT2": 25.87,
+      "PT4": 49.34
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA27",
+    "ma_chuong_trinh_2025": "7580101",
+    "ten_chuong_trinh": "Kiến trúc",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "V00",
+      "V01"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 23.52,
+    "diem_chuan_2026_pt1": 22.23,
+    "diem_chuan_2025_all": {
+      "PT1": 23.52,
+      "PT2": 25.67
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 22.23,
+      "PT2": 26.32
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA28",
+    "ma_chuong_trinh_2025": "7580201",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng (Chuyên ngành: Xây dựng dân dụng và công nghiệp, Kết cấu xây dựng, Vật liệu và công nghệ xây dựng)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "D07"
+    ],
+    "chi_tieu_2025": 210,
+    "chi_tieu_2026": 170,
+    "diem_chuan_2025_pt1": 22.44,
+    "diem_chuan_2026_pt1": 23.53,
+    "diem_chuan_2025_all": {
+      "PT1": 22.44,
+      "PT2": 24.95,
+      "PT4": 53.09
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 23.53,
+      "PT2": 27.0,
+      "PT4": 53.78
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA28QT1",
+    "ma_chuong_trinh_2025": "7580201 QT",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng (Chương trình tiên tiến Kỹ thuật xây dựng công trình giao thông)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "D07"
+    ],
+    "chi_tieu_2025": 60,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 19.71,
+    "diem_chuan_2026_pt1": 21.56,
+    "diem_chuan_2025_all": {
+      "PT1": 19.71,
+      "PT2": 23.13,
+      "PT4": 47.39
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 21.56,
+      "PT2": 25.92,
+      "PT3": 74.45,
+      "PT4": 49.47
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA28QT2",
+    "ma_chuong_trinh_2025": "7580201",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng (Chương trình CLC Xây dựng dân dụng và công nghiệp)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "D07"
+    ],
+    "chi_tieu_2025": 210,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 22.44,
+    "diem_chuan_2026_pt1": 20.26,
+    "diem_chuan_2025_all": {
+      "PT1": 22.44,
+      "PT2": 24.95,
+      "PT4": 53.09
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 20.26,
+      "PT2": 24.88,
+      "PT3": 70.18,
+      "PT4": 46.93
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA29",
+    "ma_chuong_trinh_2025": "7580210",
+    "ten_chuong_trinh": "Kỹ thuật cơ sở hạ tầng (Chuyên ngành Cơ sở hạ tầng kỹ thuật đô thị)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "D07"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 22.28,
+    "diem_chuan_2026_pt1": 22.82,
+    "diem_chuan_2025_all": {
+      "PT1": 22.28,
+      "PT2": 24.84,
+      "PT4": 52.75
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 22.82,
+      "PT2": 26.63,
+      "PT4": 52.21
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA30",
+    "ma_chuong_trinh_2025": "7580106",
+    "ten_chuong_trinh": "Quản lý đô thị và công trình",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 22.62,
+    "diem_chuan_2026_pt1": 22.76,
+    "diem_chuan_2025_all": {
+      "PT1": 22.62,
+      "PT2": 25.07,
+      "PT4": 53.47
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 22.76,
+      "PT2": 26.6,
+      "PT4": 52.08
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA31",
+    "ma_chuong_trinh_2025": "7580202",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng công trình thủy",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 50,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 20.48,
+    "diem_chuan_2026_pt1": 21.88,
+    "diem_chuan_2025_all": {
+      "PT1": 20.48,
+      "PT2": 23.64,
+      "PT4": 48.99
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 21.88,
+      "PT2": 26.14,
+      "PT4": 50.17
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA32",
+    "ma_chuong_trinh_2025": "7580205",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng công trình giao thông (Cầu đường bộ, Đường bộ và kỹ thuật giao thông, Cầu và kết cấu, Đường sắt và đường sắt đô thị, Xây dựng sân bay cảng hàng không, Công trình giao thông đô thị)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 600,
+    "chi_tieu_2026": 550,
+    "diem_chuan_2025_pt1": 17.94,
+    "diem_chuan_2026_pt1": 21.31,
+    "diem_chuan_2025_all": {
+      "PT1": 17.94,
+      "PT2": 21.95,
+      "PT4": 43.66
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 21.31,
+      "PT2": 25.72,
+      "PT4": 48.93
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA32DS",
+    "ma_chuong_trinh_2025": "7580205 DS",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng công trình giao thông (Chuyên ngành Đường sắt tốc độ cao)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 45,
+    "chi_tieu_2026": 60,
+    "diem_chuan_2025_pt1": 22.47,
+    "diem_chuan_2026_pt1": 23.96,
+    "diem_chuan_2025_all": {
+      "PT1": 22.47,
+      "PT2": 24.97,
+      "PT4": 53.16
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 23.96,
+      "PT2": 27.22,
+      "PT3": 87.25,
+      "PT4": 55.13
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA32QT1",
+    "ma_chuong_trinh_2025": "7580205 QT1",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng công trình giao thông (Chương trình CLC Cầu - Đường bộ Việt - Pháp)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D03",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 30,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 20.01,
+    "diem_chuan_2026_pt1": 20.16,
+    "diem_chuan_2025_all": {
+      "PT1": 20.01,
+      "PT2": 23.33,
+      "PT4": 48.02
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 20.16,
+      "PT2": 24.8,
+      "PT3": 69.85,
+      "PT4": 46.75
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA32QT2",
+    "ma_chuong_trinh_2025": "7580205 QT2",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng công trình giao thông (Chương trình CLC Cầu - Đường bộ Việt - Anh)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 40,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 17.25,
+    "diem_chuan_2026_pt1": 20.55,
+    "diem_chuan_2025_all": {
+      "PT1": 17.25,
+      "PT2": 21.49,
+      "PT4": 42.2
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 20.55,
+      "PT2": 25.11,
+      "PT3": 71.13,
+      "PT4": 47.47
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA32QT3",
+    "ma_chuong_trinh_2025": "7580205 QT3",
+    "ten_chuong_trinh": "Kỹ thuật xây dựng công trình giao thông (Chương trình CLC Công trình giao thông đô thị) (Mã tuyển sinh các năm trước: Chương trình CLC Công trình giao thông đô thị Việt-Nhật)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "D01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 30,
+    "chi_tieu_2026": 50,
+    "diem_chuan_2025_pt1": 16.19,
+    "diem_chuan_2026_pt1": 20.0,
+    "diem_chuan_2025_all": {
+      "PT1": 16.19,
+      "PT2": 20.78,
+      "PT4": 39.96
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 20.0,
+      "PT2": 24.67,
+      "PT3": 69.33,
+      "PT4": 46.46
+    }
+  },
+  {
+    "ma_chuong_trinh_2026": "GHA33",
+    "ma_chuong_trinh_2025": "7480106",
+    "ten_chuong_trinh": "Kỹ thuật máy tính (theo hướng chuyên sâu vi mạch - bán dẫn, bao gồm lớp kỹ sư tài năng)",
+    "campus": "GHA",
+    "to_hop_xet_tuyen": [
+      "A00",
+      "A01",
+      "C01",
+      "X06"
+    ],
+    "chi_tieu_2025": 90,
+    "chi_tieu_2026": 120,
+    "diem_chuan_2025_pt1": 23.95,
+    "diem_chuan_2026_pt1": 24.83,
+    "diem_chuan_2025_all": {
+      "PT1": 23.95,
+      "PT3": 83.07,
+      "PT4": 56.57
+    },
+    "diem_chuan_2026_all": {
+      "PT1": 24.83,
+      "PT3": 92.94,
+      "PT4": 57.87
+    }
+  }
+]
