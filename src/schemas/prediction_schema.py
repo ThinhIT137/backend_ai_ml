@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Dict, List, Optional
 from pydantic import BaseModel
 
 
@@ -45,3 +45,60 @@ class BenchmarkScenarioRequest(BaseModel):
 class BenchmarkScenarioResponse(BaseModel):
     success: bool = True
     data: BenchmarkPredictionItem
+
+
+class ForeignLanguageCert(BaseModel):
+    cert_type: str = "IELTS"
+    score: float
+
+
+class AdmissionChanceRequest(BaseModel):
+    academic_scores: Dict[str, float]
+    target_major_code: Optional[str] = None
+    admission_method: str = "PT1"
+    priority_region: Optional[str] = "KV3"
+    priority_group: Optional[str] = None
+    foreign_language_cert: Optional[ForeignLanguageCert] = None
+
+
+class MajorChanceResult(BaseModel):
+    ma_chuong_trinh: str
+    ten_chuong_trinh: str
+    diem_chuan_du_doan: float
+    to_hop_toi_uu: str
+    diem_to_hop_goc: float
+    diem_uu_tien: float
+    tong_diem_xet_tuyen: float
+    do_lech_diem: float
+    xac_suat_trung_tuyen: float
+    muc_do_an_toan: str
+    nhan_xet_chuyen_gia: str
+
+
+class AdmissionChanceResponse(BaseModel):
+    success: bool = True
+    data: MajorChanceResult
+
+
+class StrategyTier(BaseModel):
+    tier_name: str
+    tier_description: str
+    recommended_nv_slots: str
+    total_majors: int
+    majors: List[MajorChanceResult]
+
+
+class MajorRecommendationData(BaseModel):
+    total_majors_evaluated: int
+    best_score: float
+    best_combination: str
+    priority_score: float
+    safety_tier: StrategyTier
+    target_tier: StrategyTier
+    dream_tier: StrategyTier
+    strategic_advice: List[str]
+
+
+class MajorRecommendationResponse(BaseModel):
+    success: bool = True
+    data: MajorRecommendationData
