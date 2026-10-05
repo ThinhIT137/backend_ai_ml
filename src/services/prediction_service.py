@@ -155,13 +155,15 @@ class PredictionService:
                 f"Không tìm thấy chương trình đào tạo mã: {target_code}"
             )
 
-        return self.evaluate_single_major_chance(
+        result = self.evaluate_single_major_chance(
             target_code,
             norm_scores,
             converted_en,
             request.priority_region,
             request.priority_group,
         )
+        self.repo.record_evaluation(result.dict())
+        return result
 
     def recommend_majors(
         self, request: AdmissionChanceRequest

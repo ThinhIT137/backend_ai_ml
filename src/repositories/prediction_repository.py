@@ -122,5 +122,18 @@ class PredictionRepository:
 
         return None
 
+    def record_evaluation(self, data: dict):
+        if not hasattr(self, "_recent_evaluations"):
+            self._recent_evaluations = []
+        if len(self._recent_evaluations) >= 50:
+            self._recent_evaluations.pop(0)
+        self._recent_evaluations.append(data)
+
+    def get_recent_evaluations(self):
+        if not hasattr(self, "_recent_evaluations"):
+            self._recent_evaluations = []
+        return list(self._recent_evaluations)
+
 
 prediction_repository = PredictionRepository()
+
