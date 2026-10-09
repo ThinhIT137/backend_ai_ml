@@ -103,8 +103,9 @@ class PredictionService:
         converted_en: float,
         region: Optional[str],
         group: Optional[str],
+        major_data: Optional[dict] = None,
     ) -> MajorChanceResult:
-        row = self.repo.get_2026_prediction_by_major(code)
+        row = major_data if major_data else self.repo.get_2026_prediction_by_major(code)
         major_name = row["ten_chuong_trinh"] if row else code
         cutoff = row["diem_du_doan"] if row else 24.0
 
@@ -161,8 +162,9 @@ class PredictionService:
             converted_en,
             request.priority_region,
             request.priority_group,
+            major_data=row,
         )
-        self.repo.record_evaluation(result.dict())
+        self.repo.record_evaluation(result.model_dump())
         return result
 
     def recommend_majors(
@@ -186,6 +188,7 @@ class PredictionService:
                 converted_en,
                 request.priority_region,
                 request.priority_group,
+                major_data=p,
             )
             all_results.append(res)
 

@@ -1029,7 +1029,13 @@ def calculate_mbti_result(
 
     q_map = {q["id"]: q for q in MBTI_QUESTIONS}
 
-    for ans in answers:
+    normalized_answers = (
+        [MBTIAnswerItem(question_id=int(k), score=int(v)) for k, v in answers.items()]
+        if isinstance(answers, dict)
+        else answers
+    )
+
+    for ans in normalized_answers:
         q = q_map.get(ans.question_id)
         if not q:
             continue
