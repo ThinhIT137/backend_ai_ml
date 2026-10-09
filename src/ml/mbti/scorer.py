@@ -1,5 +1,6 @@
 from typing import Any, Dict, List, Optional
 from src.schemas.mbti_schema import (
+    CareerTrajectoryItem,
     DimensionScore,
     MajorRecommendation,
     MBTIAnswerItem,
@@ -756,6 +757,250 @@ MBTI_PROFILES: Dict[str, Dict[str, Any]] = {
 }
 
 
+IN_DEPTH_MBTI_DATA: Dict[str, Dict[str, Any]] = {
+    "INTJ": {
+        "weaknesses": [
+            "Đôi khi quá cầu toàn về mặt cấu trúc giải pháp, dẫn đến tiến độ bị chậm so với yêu cầu gấp",
+            "Có xu hướng giải quyết bài toán độc lập, ít chủ động chia sẻ khó khăn với thành viên khác",
+            "Thiếu kiên nhẫn khi phải lặp lại các quy trình thủ công mang tính hành chính",
+        ],
+        "teamwork_style": "Thích làm việc với các thành viên có năng lực chuyên môn cao, trao đổi súc tích và giải quyết việc dựa trên dữ liệu.",
+        "leadership_style": "Lãnh đạo bằng tư duy chiến lược, định hướng kiến trúc tổng thể và trao toàn quyền chủ động thực thi cho cấp dưới.",
+        "learning_style": "Tự nghiên cứu tài liệu kỹ thuật chuyên sâu, đào sâu bản chất toán học và thuật toán cốt lõi.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư phát triển phần mềm Backend", "Kỹ sư dữ liệu Junior", "Kỹ sư thuật toán"], "milestone": "Làm chủ kiến trúc hệ thống và quy trình kỹ thuật chuẩn."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Kiến trúc sư giải pháp (Solution Architect)", "Tech Lead hệ thống", "Chuyên gia AI"], "milestone": "Thiết kế và tối ưu hóa hệ thống công nghệ quy mô lớn."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc công nghệ (CTO)", "Chuyên gia trưởng chuyển đổi số"], "milestone": "Quyết định toàn diện lộ trình công nghệ và chiến lược hệ thống."},
+        ],
+    },
+    "INTP": {
+        "weaknesses": [
+            "Dễ sa đà vào tối ưu hóa lý thuyết vi mô mà quên mất thời hạn bàn giao dự án",
+            "Thường cảm thấy nhàm chán khi hệ thống đã đi vào giai đoạn bảo trì ổn định",
+            "Khó giải thích các ý tưởng kỹ thuật trừu tượng cho người không chuyên",
+        ],
+        "teamwork_style": "Đóng vai trò chuyên gia phản biện học thuật, chỉ ra các lỗ hổng logic tiềm ẩn trong thiết kế.",
+        "leadership_style": "Lãnh đạo theo phong cách tự do học thuật, truyền cảm hứng khám phá chân lý kỹ thuật.",
+        "learning_style": "Thực nghiệm độc lập, tháo rời và tái tạo lại các hệ thống phần mềm/phần cứng để hiểu bản chất.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư nghiên cứu R&D", "Lập trình viên thuật toán", "Kỹ sư vi mạch"], "milestone": "Hoàn thiện kỹ năng nghiên cứu và giải quyết bài toán cốt lõi."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Chuyên gia nghiên cứu cao cấp", "Nhà khoa học dữ liệu (Data Scientist)", "Chuyên gia mật mã an ninh mạng"], "milestone": "Đề xuất các bằng sáng chế hoặc giải pháp công nghệ tiên phong."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Trưởng phòng nghiên cứu & phát triển (Head of R&D)", "Giáo sư / Giảng viên cao cấp"], "milestone": "Dẫn dắt các đề tài nghiên cứu trọng điểm quốc gia."},
+        ],
+    },
+    "ENTJ": {
+        "weaknesses": [
+            "Có xu hướng áp đặt tiêu chuẩn khắt khe lên đồng đội, dễ gây căng thẳng trong nhóm",
+            "Đôi khi đánh giá thấp yếu tố cảm xúc và sự mệt mỏi của nhân sự hiện trường",
+            "Khó chấp nhận sự thỏa hiệp về mặt chất lượng dự án",
+        ],
+        "teamwork_style": "Thích nắm quyền điều phối, phân chia công việc rõ ràng theo mốc thời gian và đòi hỏi kỷ luật cao.",
+        "leadership_style": "Quyết đoán, truyền cảm hứng bằng kết quả thực tế, tập trung tuyệt đối vào mục tiêu chiến lược.",
+        "learning_style": "Học qua các case-study thực tế, đồ án tổng hợp và tham gia các cuộc thi khởi nghiệp, dự án lớn.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư quản lý dự án Junior", "Chuyên viên phân tích chuỗi cung ứng", "Trợ lý chỉ huy công trường"], "milestone": "Nắm vững quy trình quản lý dự án, tiến độ và chi phí."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Chỉ huy trưởng công trình", "Trưởng phòng vận hành Logistics", "Giám đốc dự án công nghệ"], "milestone": "Điều hành các dự án lớn từ khâu đấu thầu đến bàn giao."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc điều hành (CEO)", "Phó Tổng Giám đốc phụ trách kỹ thuật/vận hành"], "milestone": "Quản trị toàn diện chiến lược tăng trưởng và phát triển doanh nghiệp."},
+        ],
+    },
+    "ENTP": {
+        "weaknesses": [
+            "Nảy ra quá nhiều ý tưởng mới cùng lúc nhưng dễ bỏ dở khâu hoàn thiện chi tiết",
+            "Dễ tranh luận quá mức với giảng viên hoặc đồng đội chỉ để kiểm tra giới hạn logic",
+            "Thiếu kiên nhẫn với các công việc mang tính lặp đi lặp lại hàng ngày",
+        ],
+        "teamwork_style": "Khuấy động tinh thần sáng tạo, đưa ra các góc nhìn đột phá giải quyết bế tắc kỹ thuật.",
+        "leadership_style": "Khuyến khích đổi mới sáng tạo, mở đường cho những ý tưởng táo bạo chưa từng có tiền lệ.",
+        "learning_style": "Học qua tranh luận phản biện, thử nghiệm các công nghệ mới nhất và giải đề bài mở.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư giải pháp đổi mới sáng tạo", "Product Owner Junior", "Kỹ sư R&D Robot"], "milestone": "Tạo ra các nguyên mẫu (Prototype) giải pháp kỹ thuật khả thi."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Giám đốc sản phẩm công nghệ (Product Manager)", "Trưởng nhóm sáng tạo giải pháp"], "milestone": "Đưa sản phẩm công nghệ đột phá ra thị trường thành công."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Nhà sáng lập Startup công nghệ", "Giám đốc đổi mới sáng tạo (Chief Innovation Officer)"], "milestone": "Xây dựng hệ sinh thái công nghệ và gọi vốn đầu tư thành công."},
+        ],
+    },
+    "INFJ": {
+        "weaknesses": [
+            "Dễ bị kiệt sức tinh thần do quan tâm quá nhiều đến áp lực của người khác",
+            "Khó từ chối các yêu cầu giúp đỡ dù bản thân đang quá tải deadline",
+            "Đôi khi lý tưởng hóa quá mức tính nhân văn của các dự án kỹ thuật",
+        ],
+        "teamwork_style": "Lắng nghe sâu sắc, hòa giải xung đột trong nhóm và hướng tới mục tiêu phụng sự cộng đồng.",
+        "leadership_style": "Lãnh đạo phục vụ (Servant Leadership), thấu hiểu tâm lý và hỗ trợ tối đa cho từng thành viên.",
+        "learning_style": "Học hiệu quả khi hiểu được ý nghĩa xã hội và giá trị nhân văn của ngành học đối với cuộc sống.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư môi trường đô thị", "Chuyên viên thiết kế trải nghiệm người dùng (UX)", "Kỹ sư an toàn giao thông"], "milestone": "Đóng góp các giải pháp giảm thiểu rủi ro và tăng tiện ích cho xã hội."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Chuyên gia tư vấn phát triển bền vững", "Trưởng nhóm nghiên cứu giải pháp xanh", "Chuyên gia an toàn giao thông đô thị"], "milestone": "Tham gia xây dựng các chính sách và tiêu chuẩn bền vững."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Cố vấn chiến lược giao thông xanh", "Giám đốc phát triển bền vững (CSO)"], "milestone": "Định hướng các chương trình quốc gia về giao thông không phát thải."},
+        ],
+    },
+    "INFP": {
+        "weaknesses": [
+            "Dễ cảm thấy nản lòng khi làm việc trong môi trường áp lực cao và cạnh tranh khốc liệt",
+            "Khó đưa ra quyết định khi phải đánh đổi giữa tính nhân văn và hiệu quả kinh tế",
+            "Ngại va chạm và có xu hướng né tránh các cuộc tranh luận căng thẳng",
+        ],
+        "teamwork_style": "Tạo bầu không khí hòa hợp, tôn trọng sự khác biệt cá nhân và bảo vệ các giá trị cốt lõi.",
+        "leadership_style": "Dẫn dắt bằng sự chân thành, khích lệ tiềm năng ẩn giấu của từng cộng sự.",
+        "learning_style": "Học theo cảm hứng cá nhân, kết hợp nghệ thuật, không gian mở và tính thẩm mỹ vào kỹ thuật.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kiến trúc sư ý tưởng", "Chuyên viên thiết kế cảnh quan", "Chuyên viên truyền thông tuyển sinh"], "milestone": "Hình thành phong cách sáng tác kiến trúc và tư duy thiết kế riêng biệt."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Kiến trúc sư chủ trì thiết kế", "Chuyên gia quy hoạch không gian nhân văn"], "milestone": "Chủ trì các đồ án công trình nhà ga, cầu cảnh quan mang tính biểu tượng."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Kiến trúc sư trưởng", "Giám đốc nghệ thuật công trình"], "milestone": "Được công nhận qua các giải thưởng kiến trúc trong nước và quốc tế."},
+        ],
+    },
+    "ENFJ": {
+        "weaknesses": [
+            "Có xu hướng nhận quá nhiều trách nhiệm cộng đồng vượt quá sức lực bản thân",
+            "Dễ bị ảnh hưởng tâm lý khi xảy ra bất đồng nội bộ không thể hòa giải",
+            "Đôi khi can thiệp quá sâu vào công việc của cấp dưới vì muốn giúp đỡ",
+        ],
+        "teamwork_style": "Kết nối các thành viên, truyền lửa nhiệt huyết và xây dựng văn hóa đội nhóm gắn kết chặt chẽ.",
+        "leadership_style": "Lãnh đạo lôi cuốn (Charismatic Leadership), khích lệ tinh thần đồng đội hướng tới mục tiêu cao cả.",
+        "learning_style": "Thảo luận nhóm, thuyết trình bảo vệ đồ án và tham gia các hoạt động ngoại khóa, đoàn hội.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Chuyên viên phát triển nhân tài kỹ thuật", "Điều phối viên dự án hợp tác quốc tế", "Chuyên viên quan hệ doanh nghiệp"], "milestone": "Xây dựng mạng lưới kết nối đối tác và hỗ trợ sinh viên."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Trưởng phòng nhân sự tập đoàn kỹ thuật", "Giám đốc chương trình đào tạo & phát triển"], "milestone": "Xây dựng chiến lược phát triển nguồn nhân lực chất lượng cao."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc nhân sự (CHRO)", "Phó Hiệu trưởng / Lãnh đạo tổ chức giáo dục"], "milestone": "Định hướng văn hóa tổ chức và phát triển các thế hệ nhân tài kế cận."},
+        ],
+    },
+    "ENFP": {
+        "weaknesses": [
+            "Dễ bị phân tâm bởi nhiều cơ hội mới trước khi kịp hoàn tất dự án hiện tại",
+            "Không thích các công việc liên quan đến tính toán số liệu chi tiết kéo dài",
+            "Dễ cảm thấy ngột ngạt trong các môi trường kỹ thuật quá gò bó theo khuôn mẫu",
+        ],
+        "teamwork_style": "Tạo nguồn năng lượng tích cực, liên tục đề xuất các phương án tiếp cận mới mẻ và độc đáo.",
+        "leadership_style": "Lãnh đạo truyền cảm hứng, khuyến khích tự do thử nghiệm và đón nhận sự thay đổi.",
+        "learning_style": "Học qua trải nghiệm thực địa, tham gia các ngày hội công nghệ và thử thách thiết kế nhanh.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Chuyên viên Marketing dịch vụ vận tải số", "Chuyên viên truyền thông công nghệ", "Nhà sáng tạo nội dung số"], "milestone": "Lan tỏa các giải pháp công nghệ di chuyển thông minh đến cộng đồng."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Giám đốc Marketing công nghệ (CMO)", "Trưởng bộ phận trải nghiệm khách hàng (CX)"], "milestone": "Xây dựng các chiến dịch truyền thông thương hiệu giao thông quy mô lớn."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Cố vấn chiến lược thương hiệu & trải nghiệm số", "Doanh nhân khởi nghiệp"], "milestone": "Xây dựng các nền tảng số có hàng triệu người dùng thường xuyên."},
+        ],
+    },
+    "ISTJ": {
+        "weaknesses": [
+            "Có xu hướng kháng cự lại các phương pháp mới nếu chưa có quy chuẩn thực chứng",
+            "Đôi khi cứng nhắc trong việc áp dụng quy chế, thiếu sự linh hoạt trong tình huống khẩn cấp",
+            "Khó chấp nhận sự chậm trễ hoặc sai sót dù là nhỏ nhất của đồng đội",
+        ],
+        "teamwork_style": "Đảm bảo tính chính xác, thực hiện đúng cam kết về thời gian và tuân thủ tuyệt đối quy trình kỹ thuật.",
+        "leadership_style": "Lãnh đạo theo nguyên tắc và sự gương mẫu, đề cao tính ổn định, tin cậy và minh bạch.",
+        "learning_style": "Học theo giáo trình bài bản, giải bài tập kỹ thuật có hệ thống và ghi chép chi tiết.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư kiểm định chất lượng công trình", "Kỹ sư giám sát thi công", "Chuyên viên kế toán tài chính vận tải"], "milestone": "Thành thạo các tiêu chuẩn quốc gia TCVN, ASTM và quy chuẩn kỹ thuật."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Kỹ sư trưởng kiểm định an toàn", "Trưởng phòng quản trị chất lượng (QA/QC)", "Kế toán trưởng công ty vận tải"], "milestone": "Đảm bảo chất lượng và hồ sơ pháp lý hoàn hảo cho các đại dự án."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc quản lý rủi ro và tuân thủ", "Chuyên gia giám định công trình quốc gia"], "milestone": "Thẩm định các dự án trọng điểm cấp nhà nước và quốc tế."},
+        ],
+    },
+    "ISFJ": {
+        "weaknesses": [
+            "Thường chịu đựng áp lực một mình và ngại nói lên ý kiến trái chiều",
+            "Dễ bị kiệt sức do vừa lo việc chuyên môn vừa hỗ trợ hậu cần cho cả nhóm",
+            "Khó thích ứng ngay khi có sự thay đổi quy trình đột ngột từ cấp trên",
+        ],
+        "teamwork_style": "Chăm sóc chu đáo từng chi tiết kỹ thuật, hỗ trợ đồng đội âm thầm và giữ gìn sự gắn kết nội bộ.",
+        "leadership_style": "Lãnh đạo bảo trợ, tạo dựng môi trường an toàn, ổn định và đầy đủ điều kiện làm việc cho cộng sự.",
+        "learning_style": "Học tập kiên trì, từng bước làm chủ kiến thức nền tảng và tích lũy kinh nghiệm qua thực hành.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư quản lý hồ sơ chất lượng công trình", "Chuyên viên điều hành dịch vụ logistics", "Chuyên viên an toàn lao động"], "milestone": "Vận hành trơn tru các quy trình hậu cần và đảm bảo an toàn tuyệt đối."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Trưởng phòng điều độ vận tải", "Trưởng ban an toàn vệ sinh lao động dự án"], "milestone": "Xây dựng hệ thống an toàn đạt chuẩn ISO quốc tế."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc vận hành hậu cần (Logistics Operations Director)", "Cố vấn an toàn công trình"], "milestone": "Tối ưu hóa chi phí vận hành và giữ vững văn hóa an toàn bền vững."},
+        ],
+    },
+    "ESTJ": {
+        "weaknesses": [
+            "Dễ nóng vội và bực bội khi người khác làm việc chậm chạp hoặc không đúng quy trình",
+            "Có thể tạo cảm giác áp đặt, thiếu đồng cảm với khó khăn cá nhân của nhân sự",
+            "Thiếu kiên nhẫn khi phải lắng nghe các ý tưởng lý thuyết chưa thấy rõ tính khả thi",
+        ],
+        "teamwork_style": "Thiết lập trật tự, phân công nhiệm vụ cụ thể, theo dõi sát sao tiến độ và đốc thúc công việc.",
+        "leadership_style": "Chỉ huy quyết liệt, kỷ luật thép, giải quyết dứt điểm các vướng mắc tại công trường và dự án.",
+        "learning_style": "Học qua các dự án quản lý thực tế, thực hành điều phối hiện trường và xử lý số liệu tiến độ.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư thi công hiện trường", "Chuyên viên quản lý chuỗi cung ứng", "Điều phối viên đội xe"], "milestone": "Quản lý tốt tổ đội thi công và luân chuyển hàng hóa không tắc nghẽn."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Chỉ huy phó / Chỉ huy trưởng công trình", "Trưởng phòng kế hoạch & tiến độ", "Giám đốc trung tâm phân phối"], "milestone": "Hoàn thành các dự án vượt tiến độ và tối ưu chi phí dự toán."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Tổng chỉ huy dự án hạ tầng quốc gia", "Phó Tổng Giám đốc phụ trách thi công/vận hành"], "milestone": "Chỉ đạo các công trình trọng điểm quy mô hàng nghìn tỷ đồng."},
+        ],
+    },
+    "ESFJ": {
+        "weaknesses": [
+            "Dễ bị căng thẳng khi môi trường làm việc xảy ra xung đột gay gắt",
+            "Có xu hướng phụ thuộc vào sự công nhận và đánh giá của người xung quanh",
+            "Khó đưa ra các quyết định xử lý kỷ luật nghiêm khắc đối với cấp dưới",
+        ],
+        "teamwork_style": "Xây dựng tinh thần đồng đội nồng ấm, quan tâm đến phúc lợi và sự an tâm của từng thành viên.",
+        "leadership_style": "Lãnh đạo gắn kết, tạo động lực làm việc thông qua sự ghi nhận công bằng và chăm lo đời sống.",
+        "learning_style": "Học nhóm, giao lưu trao đổi kiến thức với bạn bè và tham gia tích cực các hội thảo chuyên ngành.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Chuyên viên chăm sóc khách hàng doanh nghiệp vận tải", "Chuyên viên quản lý hợp đồng logistics", "Điều phối viên dịch vụ khách hàng"], "milestone": "Xây dựng mối quan hệ tin cậy bền vững với các đối tác vận tải lớn."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Trưởng phòng dịch vụ khách hàng (Customer Service Manager)", "Trưởng phòng quan hệ đối tác logistics"], "milestone": "Nâng cao chỉ số hài lòng khách hàng (CSAT) và giữ chân đối tác chiến lược."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc quan hệ khách hàng chiến lược (Chief Customer Officer)", "Giám đốc đối ngoại"], "milestone": "Đàm phán và duy trì các liên minh logistics toàn cầu."},
+        ],
+    },
+    "ISTP": {
+        "weaknesses": [
+            "Không thích các cam kết dài hạn ràng buộc hoặc các kế hoạch quá chi tiết từ trước",
+            "Có xu hướng kiệm lời, ngại chia sẻ cảm xúc và đôi khi tạo cảm giác xa cách",
+            "Dễ chán nản khi phải tuân theo các quy tắc hành chính mang tính hình thức",
+        ],
+        "teamwork_style": "Thực chiến, xắn tay áo vào giải quyết ngay các sự cố kỹ thuật hóc búa nhất tại hiện trường.",
+        "leadership_style": "Lãnh đạo qua hành động thực tế (Lead by Example), không dài dòng lý thuyết, tập trung vào hiệu quả.",
+        "learning_style": "Thực hành tại xưởng cơ khí, phòng thí nghiệm điện tử, tháo lắp máy móc thực tế và kiểm tra linh kiện.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư vận hành & bảo dưỡng máy xây dựng", "Kỹ sư chẩn đoán kỹ thuật ô tô", "Kỹ sư cơ điện tử thực địa"], "milestone": "Chẩn đoán và khắc phục nhanh chóng mọi sự cố cơ - điện - thủy lực."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Trưởng nhóm kỹ thuật bảo dưỡng", "Chuyên gia hiệu chuẩn thiết bị chính xác", "Kỹ sư trưởng xưởng sản xuất"], "milestone": "Tối ưu hóa tuổi thọ thiết bị và giảm thiểu thời gian chết (Downtime) của dây chuyền."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Chuyên gia cao cấp hệ thống thiết bị giao thông", "Giám đốc dịch vụ kỹ thuật"], "milestone": "Làm chủ công nghệ các dòng phương tiện hiện đại như tàu cao tốc, xe điện tự hành."},
+        ],
+    },
+    "ISFP": {
+        "weaknesses": [
+            "Dễ cảm thấy áp lực khi bị giới hạn trong các khuôn mẫu kỹ thuật cứng nhắc",
+            "Ngại va chạm và có xu hướng thu mình lại khi gặp phải sự chỉ trích gay gắt",
+            "Khó lập kế hoạch tài chính hoặc thời gian biểu dài hạn chặt chẽ",
+        ],
+        "teamwork_style": "Đóng góp các góc nhìn thẩm mỹ tinh tế, tạo ra các sản phẩm công nghệ có trải nghiệm thị giác đẹp mắt.",
+        "leadership_style": "Tôn trọng không gian sáng tạo cá nhân, hỗ trợ cộng sự phát triển phong cách độc đáo riêng.",
+        "learning_style": "Học qua trực quan sinh động, mô hình 3D, bản vẽ phối cảnh và ứng dụng thực tế có tính mỹ thuật.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kiến trúc sư phối cảnh 3D", "Chuyên viên thiết kế giao diện ứng dụng (UI Designer)", "Kỹ sư thiết kế nội thất nhà ga/phương tiện"], "milestone": "Tạo ra các sản phẩm thiết kế có tính thẩm mỹ và công năng cao."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Trưởng nhóm thiết kế mỹ thuật công nghiệp", "Chuyên gia thiết kế nhận diện thương hiệu công trình"], "milestone": "Định hình ngôn ngữ thiết kế cho các dòng sản phẩm giao thông hiện đại."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc sáng tạo thiết kế (Design Director)", "Kiến trúc sư trưởng cảnh quan"], "milestone": "Tạo nên những dấu ấn kiến trúc giao thông giàu bản sắc và giá trị nghệ thuật."},
+        ],
+    },
+    "ESTP": {
+        "weaknesses": [
+            "Có xu hướng hành động trước khi tính toán kỹ lưỡng mọi rủi ro tiềm ẩn",
+            "Thiếu kiên nhẫn với các buổi họp dài dòng và các báo cáo lý thuyết khô khan",
+            "Dễ bỏ qua các quy định an toàn nếu cảm thấy chúng làm chậm tiến độ xử lý việc",
+        ],
+        "teamwork_style": "Nhanh nhẹn, năng động, thúc đẩy hành động ngay tức khắc và phá tan các bế tắc trong công việc.",
+        "leadership_style": "Chỉ huy thực chiến tại chỗ, phản ứng thần tốc với các biến cố phát sinh và chịu trách nhiệm cao.",
+        "learning_style": "Học qua các tình huống mô phỏng khẩn cấp, đi thực tế tại các công trường và cảng biển sôi động.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Kỹ sư giám sát an toàn hiện trường", "Điều độ viên khai thác cảng biển / nhà ga", "Kỹ sư thử nghiệm xe thử nghiệm"], "milestone": "Ứng phó xuất sắc trước mọi sự cố phát sinh tại hiện trường."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Trưởng ban điều hành hiện trường", "Giám đốc khai thác bến cảng", "Trưởng phòng vận tải đường bộ"], "milestone": "Nâng cao năng suất xếp dỡ và luân chuyển hàng hóa cảng biển lên mức kỷ lục."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc điều hành khai thác hạ tầng (COO)", "Phó Tổng Giám đốc vận hành cảng quốc tế"], "milestone": "Chỉ đạo các chiến lược khai thác logistics quy mô liên vùng."},
+        ],
+    },
+    "ESFP": {
+        "weaknesses": [
+            "Dễ bị cuốn vào những niềm vui trước mắt mà lơ là các mục tiêu học tập dài hạn",
+            "Không thích đối mặt với các số liệu phân tích khô khan, mang tính lặp đi lặp lại",
+            "Dễ bối rối khi phải giải quyết các cuộc khủng hoảng kéo dài đòi hỏi sự kiên nhẫn cao",
+        ],
+        "teamwork_style": "Tạo niềm vui và động lực cho cả nhóm, biến các buổi làm việc kỹ thuật căng thẳng trở nên hào hứng.",
+        "leadership_style": "Lãnh đạo truyền cảm hứng bằng năng lượng tích cực, đưa mọi người lại gần nhau và cùng tiến bước.",
+        "learning_style": "Học qua thực tế tương tác, trò chơi hóa kiến thức (Gamification) và thuyết trình trước đám đông.",
+        "career_trajectories": [
+            {"phase": "Khởi đầu (1 - 2 năm)", "roles": ["Chuyên viên phát triển kinh doanh dịch vụ giao thông thông minh", "Chuyên viên truyền thông thương hiệu UTC", "Điều phối viên sự kiện công nghệ"], "milestone": "Quảng bá mạnh mẽ các thành tựu khoa học công nghệ giao thông đến đại chúng."},
+            {"phase": "Phát triển (3 - 5 năm)", "roles": ["Trưởng phòng phát triển thị trường công nghệ", "Giám đốc quan hệ công chúng (PR Manager)"], "milestone": "Mở rộng thị phần các dịch vụ giao thông số và công nghệ vận tải mới."},
+            {"phase": "Chuyên gia (5+ năm)", "roles": ["Giám đốc thương mại (Chief Commercial Officer)", "Phó Tổng Giám đốc kinh doanh & đối ngoại"], "milestone": "Định vị thương hiệu doanh nghiệp công nghệ giao thông hàng đầu thị trường."},
+        ],
+    },
+}
+
+
 from src.repositories.major_repository import major_repository
 from src.ml.llm.loader import llm_client
 
@@ -907,7 +1152,19 @@ def calculate_mbti_result(
         perceiving=p_pct,
     )
 
+    in_depth = IN_DEPTH_MBTI_DATA.get(mbti_type, IN_DEPTH_MBTI_DATA["INTJ"])
+
+    trajectories = [
+        CareerTrajectoryItem(
+            phase=t["phase"],
+            roles=t["roles"],
+            milestone=t["milestone"],
+        )
+        for t in in_depth.get("career_trajectories", [])
+    ]
+
     return MBTIResultData(
+        result_id=None,
         student_name=student_name,
         session_id=active_session_id,
         cccd=cccd,
@@ -917,9 +1174,14 @@ def calculate_mbti_result(
         archetype_group=profile["archetype_group"],
         personality_summary=profile["summary"],
         strengths=profile["strengths"],
+        weaknesses=in_depth.get("weaknesses", []),
         work_style=profile["work_style"],
+        teamwork_style=in_depth.get("teamwork_style"),
+        leadership_style=in_depth.get("leadership_style"),
+        learning_style=in_depth.get("learning_style"),
         suitable_environment=profile["suitable_environment"],
         dimension_scores=dimension_scores,
         recommended_majors=recommended_majors,
+        career_trajectories=trajectories,
         ai_advice=ai_advice,
     )

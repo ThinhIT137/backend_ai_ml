@@ -92,7 +92,14 @@ class MajorRecommendation(BaseModel):
     )
 
 
+class CareerTrajectoryItem(BaseModel):
+    phase: str = Field(..., description="Giai đoạn phát triển nghề nghiệp")
+    roles: List[str] = Field(..., description="Các vị trí công việc tiêu biểu")
+    milestone: str = Field(..., description="Mục tiêu năng lực cốt lõi")
+
+
 class MBTIResultData(BaseModel):
+    result_id: Optional[str] = Field(None, description="Mã kết quả trắc nghiệm trong CSDL ket_qua_trac_nghiem")
     student_name: Optional[str] = Field(None, description="Tên thí sinh")
     session_id: Optional[str] = Field(None, description="Mã phiên làm bài (tương thích Supabase ket_qua_trac_nghiem)")
     cccd: Optional[str] = Field(None, description="CCCD thí sinh")
@@ -104,7 +111,11 @@ class MBTIResultData(BaseModel):
     )
     personality_summary: str = Field(..., description="Mô tả tổng quan nét tính cách đặc trưng")
     strengths: List[str] = Field(..., description="Điểm mạnh nổi bật trong tư duy kỹ thuật & làm việc")
+    weaknesses: List[str] = Field(default_factory=list, description="Điểm cần lưu ý và rèn luyện thêm")
     work_style: str = Field(..., description="Phong cách học tập & giải quyết vấn đề")
+    teamwork_style: Optional[str] = Field(None, description="Phong cách làm việc nhóm đồ án")
+    leadership_style: Optional[str] = Field(None, description="Phong cách lãnh đạo & điều phối")
+    learning_style: Optional[str] = Field(None, description="Phương pháp học tập tối ưu tại giảng đường đại học")
     suitable_environment: str = Field(
         ..., description="Môi trường học thuật và làm việc lý tưởng tại UTC"
     )
@@ -112,9 +123,34 @@ class MBTIResultData(BaseModel):
     recommended_majors: List[MajorRecommendation] = Field(
         ..., description="Danh sách các ngành đào tạo UTC phù hợp nhất"
     )
+    career_trajectories: List[CareerTrajectoryItem] = Field(
+        default_factory=list, description="Bản đồ lộ trình chức danh nghề nghiệp tương lai"
+    )
     ai_advice: Optional[str] = Field(None, description="Lời khuyên định hướng chuyên sâu từ chuyên gia AI")
 
 
 class MBTIResultResponse(BaseModel):
+    success: bool = True
+    data: MBTIResultData
+
+
+class MBTIHistoryItem(BaseModel):
+    result_id: str = Field(..., description="Mã kết quả trắc nghiệm UUID")
+    session_id: str = Field(..., description="Mã phiên trắc nghiệm")
+    cccd: Optional[str] = Field(None, description="Số CCCD của thí sinh nếu có")
+    mbti_type: str = Field(..., description="Mã nhóm 4 chữ cái MBTI")
+    type_name: Optional[str] = Field(None, description="Tên hình tượng tính cách")
+    archetype_group: Optional[str] = Field(None, description="Nhóm khí chất")
+    thoi_gian_thuc_hien: Optional[str] = Field(None, description="Thời điểm làm trắc nghiệm")
+    top_majors: List[str] = Field(default_factory=list, description="Danh sách tên các ngành được gợi ý hàng đầu")
+
+
+class MBTIHistoryResponse(BaseModel):
+    success: bool = True
+    total: int = Field(..., description="Tổng số lần làm bài")
+    data: List[MBTIHistoryItem] = Field(..., description="Lịch sử các lần trắc nghiệm")
+
+
+class MBTIDetailResponse(BaseModel):
     success: bool = True
     data: MBTIResultData

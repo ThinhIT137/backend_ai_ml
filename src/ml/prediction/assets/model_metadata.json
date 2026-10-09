@@ -1,0 +1,49 @@
+{
+  "model_type": "HuberRegressor",
+  "library": "scikit-learn",
+  "version": "1.7.2",
+  "feature_names": [
+    "cutoff_2025",
+    "quota_growth",
+    "sim_pred",
+    "macro_delta",
+    "is_clc",
+    "is_railway",
+    "is_semiconductor",
+    "is_english",
+    "cls_ECONOMICS_TRANSPORT",
+    "cls_ELECTRICAL_AUTOMATION",
+    "cls_IT_CS",
+    "cls_MECHANICAL_AUTO"
+  ],
+  "intercept": 29.412557227116913,
+  "coefficients": {
+    "cutoff_2025": 1.0127535634914695,
+    "quota_growth": -0.5681546055196514,
+    "sim_pred": -1.262325847154872,
+    "macro_delta": -0.4424636251055612,
+    "is_clc": -0.5335459914420909,
+    "is_railway": 0.5399717956777362,
+    "is_semiconductor": 0.3277578725386425,
+    "is_english": -1.1201888232212351,
+    "cls_ECONOMICS_TRANSPORT": 0.33625505774626196,
+    "cls_ELECTRICAL_AUTOMATION": 1.2928023539308149,
+    "cls_IT_CS": 0.33119484932606347,
+    "cls_MECHANICAL_AUTO": 1.5683762342670509
+  },
+  "hyperparameters": {
+    "alpha": 0.5,
+    "epsilon": 1.35,
+    "max_iter": 1000
+  },
+  "performance_5fold_cv": {
+    "mae": 0.583,
+    "rmse": 0.778,
+    "correlation": 0.899,
+    "pct_under_0_5": 55.6,
+    "pct_under_1_0": 79.6
+  },
+  "training_samples": 54,
+  "target_variable": "diem_chuan_thpt_2026",
+  "campus": "GHA (Cơ sở Hà Nội, 54 ngành)"
+}

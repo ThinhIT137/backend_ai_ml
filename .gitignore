@@ -35,4 +35,7 @@ RULES.md
 TASKS.md
 DATABASE_SCHEMA.md
 SPRINT_ALIGNMENT_SUMMARY.md
+
+# ML simulation & experimental training
+ml_simulation/
 
