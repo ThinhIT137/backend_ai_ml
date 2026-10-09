@@ -37,7 +37,7 @@ class ValidationException(AppException):
     def __init__(self, message: str = "Dữ liệu đầu vào không hợp lệ", details: Optional[Any] = None):
         super().__init__(
             message=message,
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=422,
             code="VALIDATION_ERROR",
             details=details,
         )
@@ -85,7 +85,7 @@ def register_exception_handlers(app: FastAPI) -> None:
             formatted_errors.append({"field": loc, "message": err.get("msg")})
 
         return JSONResponse(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=422,
             content={
                 "success": False,
                 "error": "Dữ liệu yêu cầu không hợp lệ hoặc thiếu trường bắt buộc",
