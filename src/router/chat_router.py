@@ -1,4 +1,5 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Depends, status
+from src.core.security import verify_internal_api_key
 from src.schemas.chat_schema import (
     ChatRequest,
     ChatResponse,
@@ -53,6 +54,7 @@ async def list_knowledge():
     "/knowledge",
     response_model=KnowledgeItemSchema,
     status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(verify_internal_api_key)],
 )
 async def create_knowledge(request: KnowledgeCreateRequest):
     return chat_service.create_knowledge(request)
@@ -62,6 +64,7 @@ async def create_knowledge(request: KnowledgeCreateRequest):
     "/knowledge/{ma_tri_thuc}",
     response_model=KnowledgeItemSchema,
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(verify_internal_api_key)],
 )
 async def update_knowledge(ma_tri_thuc: str, request: KnowledgeUpdateRequest):
     return chat_service.update_knowledge(ma_tri_thuc, request)
@@ -70,6 +73,7 @@ async def update_knowledge(ma_tri_thuc: str, request: KnowledgeUpdateRequest):
 @router.delete(
     "/knowledge/{ma_tri_thuc}",
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(verify_internal_api_key)],
 )
 async def delete_knowledge(ma_tri_thuc: str):
     chat_service.delete_knowledge(ma_tri_thuc)

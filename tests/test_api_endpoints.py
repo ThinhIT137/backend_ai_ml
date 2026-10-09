@@ -314,6 +314,23 @@ def test_chat_knowledge_list(client):
     assert isinstance(payload["data"], list)
 
 
+def test_chat_knowledge_unauthorized(client):
+    res_create = client.post(
+        "/api/chat/knowledge",
+        json={"topic": "Chủ đề test", "answer": "Nội dung"},
+    )
+    assert res_create.status_code in [401, 403]
+
+    res_update = client.put(
+        "/api/chat/knowledge/fake_id",
+        json={"topic": "Chủ đề sửa"},
+    )
+    assert res_update.status_code in [401, 403]
+
+    res_delete = client.delete("/api/chat/knowledge/fake_id")
+    assert res_delete.status_code in [401, 403]
+
+
 def test_chat_knowledge_crud_with_mock(client):
     fake_item = {
         "ma_tri_thuc": "fake_id_123",
@@ -323,10 +340,13 @@ def test_chat_knowledge_crud_with_mock(client):
         "trang_thai": "active",
         "create_at": "2026-10-09T00:00:00",
     }
+    auth_headers = {"Authorization": "Bearer admin_test_token"}
+
     with patch("src.repositories.chat_repository.chat_repository.create_tri_thuc", return_value=fake_item):
         with patch("src.services.chat_service.chat_service.sync_knowledge"):
             res_create = client.post(
                 "/api/chat/knowledge",
+                headers=auth_headers,
                 json={
                     "topic": "Chủ đề test",
                     "question": "Câu hỏi test",
@@ -340,27 +360,31 @@ def test_chat_knowledge_crud_with_mock(client):
         with patch("src.services.chat_service.chat_service.sync_knowledge"):
             res_update = client.put(
                 "/api/chat/knowledge/fake_id_123",
+                headers=auth_headers,
                 json={"topic": "Chủ đề test sửa"},
             )
             assert res_update.status_code == 200
 
     with patch("src.repositories.chat_repository.chat_repository.delete_tri_thuc", return_value=True):
         with patch("src.services.chat_service.chat_service.sync_knowledge"):
-            res_delete = client.delete("/api/chat/knowledge/fake_id_123")
+            res_delete = client.delete("/api/chat/knowledge/fake_id_123", headers=auth_headers)
             assert res_delete.status_code == 200
             assert res_delete.json()["success"] is True
 
 
 def test_chat_knowledge_update_not_found(client):
+    auth_headers = {"Authorization": "Bearer admin_test_token"}
     with patch("src.repositories.chat_repository.chat_repository.update_tri_thuc", return_value=None):
         res = client.put(
             "/api/chat/knowledge/nonexistent_id",
+            headers=auth_headers,
             json={"topic": "Test"},
         )
         assert res.status_code == 404
 
 
 def test_chat_knowledge_delete_not_found(client):
+    auth_headers = {"Authorization": "Bearer admin_test_token"}
     with patch("src.repositories.chat_repository.chat_repository.delete_tri_thuc", return_value=False):
-        res = client.delete("/api/chat/knowledge/nonexistent_id")
+        res = client.delete("/api/chat/knowledge/nonexistent_id", headers=auth_headers)
         assert res.status_code == 404

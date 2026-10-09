@@ -1,11 +1,24 @@
 import os
 import sys
+from unittest.mock import patch
 import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+for name in ("DATABASE_URL", "DATABASE_URL_PUBLIC", "DIRECT_URL", "NVIDIA_API_KEY"):
+    os.environ[name] = ""
+os.environ["DEBUG"] = "false"
+
 from fastapi.testclient import TestClient
 from app import app
+
+
+@pytest.fixture(autouse=True)
+def isolate_external_io():
+    with patch("psycopg2.connect", side_effect=ConnectionError("Test DB isolated")), patch(
+        "requests.post", side_effect=AssertionError("Unexpected LLM network call")
+    ):
+        yield
 
 
 @pytest.fixture(scope="session")
