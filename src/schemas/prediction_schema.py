@@ -1,5 +1,5 @@
 from typing import Dict, List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, field_validator
 
 
 class EquivalentMethodScores(BaseModel):
@@ -51,14 +51,35 @@ class ForeignLanguageCert(BaseModel):
     cert_type: str = "IELTS"
     score: float
 
+    @field_validator("score")
+    @classmethod
+    def validate_cert_score(cls, score: float) -> float:
+        if score < 0.0:
+            raise ValueError("Điểm chứng chỉ ngoại ngữ không được là số âm")
+        return score
+
 
 class AdmissionChanceRequest(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
     academic_scores: Dict[str, float]
     target_major_code: Optional[str] = None
     admission_method: str = "PT1"
     priority_region: Optional[str] = "KV3"
     priority_group: Optional[str] = None
     foreign_language_cert: Optional[ForeignLanguageCert] = None
+
+    @field_validator("academic_scores")
+    @classmethod
+    def validate_academic_scores(cls, scores: Dict[str, float]) -> Dict[str, float]:
+        if not scores:
+            raise ValueError("Danh sách điểm môn học không được để trống")
+        for subject, score in scores.items():
+            if score < 0.0 or score > 10.0:
+                raise ValueError(
+                    f"Điểm môn '{subject}' không hợp lệ ({score}). Điểm môn học phải nằm trong khoảng từ 0 đến 10"
+                )
+        return scores
 
 
 class MajorChanceResult(BaseModel):

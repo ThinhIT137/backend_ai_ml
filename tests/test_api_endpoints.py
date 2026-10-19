@@ -236,6 +236,66 @@ def test_predict_admission_chance_invalid_major(client, sample_academic_scores):
     assert response.status_code == 404
 
 
+def test_predict_admission_chance_negative_score_rejected(client):
+    body = {
+        "academic_scores": {"toan": -1.0, "vat_ly": 8.0, "hoa_hoc": 7.5},
+        "target_major_code": "GHA14",
+    }
+    response = client.post("/api/predict/admission-chance", json=body)
+    assert response.status_code == 422
+    payload = response.json()
+    assert payload["success"] is False
+    assert payload["code"] == "VALIDATION_ERROR"
+
+
+def test_predict_admission_chance_score_above_10_rejected(client):
+    body = {
+        "academic_scores": {"toan": 11.0, "vat_ly": 8.0, "hoa_hoc": 7.5},
+        "target_major_code": "GHA14",
+    }
+    response = client.post("/api/predict/admission-chance", json=body)
+    assert response.status_code == 422
+    payload = response.json()
+    assert payload["success"] is False
+    assert payload["code"] == "VALIDATION_ERROR"
+
+
+def test_predict_admission_chance_empty_scores_rejected(client):
+    body = {
+        "academic_scores": {},
+        "target_major_code": "GHA14",
+    }
+    response = client.post("/api/predict/admission-chance", json=body)
+    assert response.status_code == 422
+    payload = response.json()
+    assert payload["success"] is False
+
+
+def test_predict_recommend_majors_invalid_scores_rejected(client):
+    body_neg = {
+        "academic_scores": {"toan": -1.0, "vat_ly": 8.0},
+    }
+    res_neg = client.post("/api/predict/recommend-majors", json=body_neg)
+    assert res_neg.status_code == 422
+
+    body_over = {
+        "academic_scores": {"toan": 11.0, "vat_ly": 8.0},
+    }
+    res_over = client.post("/api/predict/recommend-majors", json=body_over)
+    assert res_over.status_code == 422
+
+
+def test_predict_admission_chance_boundary_scores_accepted(client):
+    body = {
+        "academic_scores": {"toan": 0.0, "vat_ly": 10.0, "hoa_hoc": 5.0},
+        "target_major_code": "GHA14",
+    }
+    response = client.post("/api/predict/admission-chance", json=body)
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["success"] is True
+
+
 def test_predict_recommend_majors_valid(client, sample_academic_scores):
     body = {
         "academic_scores": sample_academic_scores,
