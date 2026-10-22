@@ -32,6 +32,21 @@ def test_health_endpoint(client):
     root_head = client.head("/")
     assert root_head.status_code == 200
 
+    head_mbti = client.head("/api/mbti/questions")
+    assert head_mbti.status_code == 200
+    assert len(head_mbti.content) == 0
+
+    head_predict = client.head("/api/predict/all-benchmarks")
+    assert head_predict.status_code == 200
+    assert len(head_predict.content) == 0
+
+    head_trends = client.head("/api/predict/dynamic-trends/GHA14")
+    assert head_trends.status_code == 200
+    assert len(head_trends.content) == 0
+
+    head_post = client.head("/api/predict/admission-chance")
+    assert head_post.status_code == 405
+
 
 def test_mbti_questions_endpoint(client):
     response = client.get("/api/mbti/questions")
