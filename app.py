@@ -1,6 +1,8 @@
 import logging
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import Response
+from starlette.middleware.base import BaseHTTPMiddleware
 import uvicorn
 
 from src.core.config import settings
@@ -21,6 +23,20 @@ from src.repositories.major_repository import major_repository
 from src.services.chat_service import chat_service
 
 
+class HeadMethodMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        if request.method == "HEAD":
+            request.scope["method"] = "GET"
+            response = await call_next(request)
+            return Response(
+                content=b"",
+                status_code=response.status_code,
+                headers=dict(response.headers),
+                media_type=response.media_type,
+            )
+        return await call_next(request)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info(f"Khởi động {settings.PROJECT_NAME} v{settings.VERSION}...")
@@ -39,6 +55,7 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
+app.add_middleware(HeadMethodMiddleware)
 setup_cors(app)
 register_exception_handlers(app)
 
