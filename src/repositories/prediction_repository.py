@@ -14,6 +14,7 @@ class PredictionRepository:
             "hanoi_anchor_2025_2026.json",
         )
         self.cached_anchors = {}
+        self._predictions_cache = {}
         self.load_fallback_anchors()
 
     def load_fallback_anchors(self):
@@ -28,6 +29,8 @@ class PredictionRepository:
                 self.cached_anchors = {}
 
     def get_all_2026_predictions(self):
+        if self._predictions_cache:
+            return list(self._predictions_cache.values())
         results = []
         try:
             with get_db_connection() as conn:
@@ -48,78 +51,63 @@ class PredictionRepository:
                 cur.execute(sql)
                 rows = cur.fetchall()
                 for r in rows:
-                    results.append(
-                        {
-                            "ma_chuong_trinh": r[0],
-                            "ten_chuong_trinh": r[1],
-                            "diem_du_doan": float(r[2]),
-                            "chi_tieu_2025": int(r[3]),
-                            "chi_tieu_2026": int(r[4]),
-                            "diem_chuan_2025": float(r[5]),
-                        }
-                    )
+                    item = {
+                        "ma_chuong_trinh": r[0],
+                        "ten_chuong_trinh": r[1],
+                        "diem_du_doan": float(r[2]),
+                        "chi_tieu_2025": int(r[3]),
+                        "chi_tieu_2026": int(r[4]),
+                        "diem_chuan_2025": float(r[5]),
+                    }
+                    results.append(item)
+                    self._predictions_cache[r[0]] = item
         except Exception:
             pass
 
         if not results and self.cached_anchors:
             for code, item in self.cached_anchors.items():
                 c25 = float(item.get("diem_chuan_2025_pt1") or 23.0)
-                results.append(
-                    {
-                        "ma_chuong_trinh": code,
-                        "ten_chuong_trinh": item.get("ten_chuong_trinh", ""),
-                        "diem_du_doan": c25,
-                        "chi_tieu_2025": int(item.get("chi_tieu_2025") or 60),
-                        "chi_tieu_2026": int(item.get("chi_tieu_2026") or 60),
-                        "diem_chuan_2025": c25,
-                    }
-                )
+                row_dict = {
+                    "ma_chuong_trinh": code,
+                    "ten_chuong_trinh": item.get("ten_chuong_trinh", ""),
+                    "diem_du_doan": float(item.get("diem_chuan_2026_pt1") or c25),
+                    "chi_tieu_2025": int(item.get("chi_tieu_2025") or 60),
+                    "chi_tieu_2026": int(item.get("chi_tieu_2026") or 60),
+                    "diem_chuan_2025": c25,
+                }
+                results.append(row_dict)
+                self._predictions_cache[code] = row_dict
 
         return results
 
     def get_2026_prediction_by_major(self, ma_chuong_trinh: str):
-        try:
-            with get_db_connection() as conn:
-                cur = conn.cursor()
-                sql = (
-                    "SELECT d.ma_chuong_trinh, c.ten_chuong_trinh, d.diem_du_doan, "
-                    "COALESCE(l25.chi_tieu, 60) AS chi_tieu_2025, "
-                    "COALESCE(l26.chi_tieu, 60) AS chi_tieu_2026, "
-                    "COALESCE(dt25.diem, 23.0) AS diem_chuan_2025 "
-                    "FROM du_doan_diem_chuan d "
-                    "JOIN chuong_trinh_dao_tao c ON d.ma_chuong_trinh = c.ma_chuong_trinh "
-                    "LEFT JOIN lich_su_diem_chuan l25 ON d.ma_chuong_trinh = l25.ma_chuong_trinh AND l25.nam = 2025 "
-                    "LEFT JOIN diem_trung_tuyen dt25 ON l25.ma_ls_dc = dt25.ma_ls_dc AND dt25.ma_phuong_thuc = 'PT1' "
-                    "LEFT JOIN lich_su_diem_chuan l26 ON d.ma_chuong_trinh = l26.ma_chuong_trinh AND l26.nam = 2026 "
-                    "WHERE d.nam_du_doan = 2026 AND d.ma_chuong_trinh = %s "
-                    "LIMIT 1;"
-                )
-                cur.execute(sql, (ma_chuong_trinh,))
-                row = cur.fetchone()
-                if row:
-                    return {
-                        "ma_chuong_trinh": row[0],
-                        "ten_chuong_trinh": row[1],
-                        "diem_du_doan": float(row[2]),
-                        "chi_tieu_2025": int(row[3]),
-                        "chi_tieu_2026": int(row[4]),
-                        "diem_chuan_2025": float(row[5]),
-                    }
-        except Exception:
-            pass
-
+        if ma_chuong_trinh in self._predictions_cache:
+            return self._predictions_cache[ma_chuong_trinh]
+        self.get_all_2026_predictions()
+        if ma_chuong_trinh in self._predictions_cache:
+            return self._predictions_cache[ma_chuong_trinh]
         if ma_chuong_trinh in self.cached_anchors:
             item = self.cached_anchors[ma_chuong_trinh]
             c25 = float(item.get("diem_chuan_2025_pt1") or 23.0)
             return {
                 "ma_chuong_trinh": ma_chuong_trinh,
                 "ten_chuong_trinh": item.get("ten_chuong_trinh", ""),
-                "diem_du_doan": c25,
+                "diem_du_doan": float(item.get("diem_chuan_2026_pt1") or c25),
                 "chi_tieu_2025": int(item.get("chi_tieu_2025") or 60),
                 "chi_tieu_2026": int(item.get("chi_tieu_2026") or 60),
                 "diem_chuan_2025": c25,
             }
-
+        for code, item in self.cached_anchors.items():
+            if item.get("ma_chuong_trinh_2025") == ma_chuong_trinh:
+                c25 = float(item.get("diem_chuan_2025_pt1") or 23.0)
+                return {
+                    "ma_chuong_trinh": code,
+                    "ten_chuong_trinh": item.get("ten_chuong_trinh", ""),
+                    "diem_du_doan": float(item.get("diem_chuan_2026_pt1") or c25),
+                    "chi_tieu_2025": int(item.get("chi_tieu_2025") or 60),
+                    "chi_tieu_2026": int(item.get("chi_tieu_2026") or 60),
+                    "diem_chuan_2025": c25,
+                }
         return None
 
     def record_evaluation(self, data: dict):

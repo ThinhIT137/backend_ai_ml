@@ -448,3 +448,87 @@ def test_chat_knowledge_delete_not_found(client):
     with patch("src.repositories.chat_repository.chat_repository.delete_tri_thuc", return_value=False):
         res = client.delete("/api/chat/knowledge/nonexistent_id", headers=auth_headers)
         assert res.status_code == 404
+
+
+
+def test_predict_dynamic_trends_found(client):
+    response = client.get("/api/predict/dynamic-trends/GHA14?total_days=15")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["success"] is True
+    data = payload["data"]
+    assert data["ma_chuong_trinh"] == "GHA14"
+    assert len(data["timeline"]) == 15
+    assert len(data["analysis_summary"]) > 0
+    assert data["confidence_level"] == "HIGH"
+
+
+def test_predict_dynamic_trends_not_found(client):
+    response = client.get("/api/predict/dynamic-trends/NONEXISTENT_CODE")
+    assert response.status_code == 404
+
+
+def test_predict_market_news_all(client):
+    response = client.get("/api/predict/market-news")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["success"] is True
+    assert payload["total"] > 0
+    assert len(payload["data"]) > 0
+
+
+def test_predict_market_news_by_sector(client):
+    response = client.get("/api/predict/market-news?sector=IT_CS")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["success"] is True
+    for item in payload["data"]:
+        assert item["sector"] in ["IT_CS", "GENERAL"]
+
+
+def test_predict_cold_start_configure_major(client):
+    body = {
+        "ma_chuong_trinh": "GHA88",
+        "ten_chuong_trinh": "Kỹ thuật Đường sắt Tốc độ cao",
+        "cluster": "RAILWAY",
+        "degree_type": "KỸ_SƯ",
+        "chi_tieu": 50,
+        "external_ref_score": 25.5,
+    }
+    response = client.post("/api/predict/cold-start/configure-major", json=body)
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["success"] is True
+    data = payload["data"]
+    assert data["ma_chuong_trinh"] == "GHA88"
+    assert data["confidence_level"] == "LOW_COLD_START"
+    assert 20.0 <= data["estimated_cutoff"] <= 28.0
+
+
+def test_predict_cold_start_percentile_equating(client):
+    body = {
+        "raw_score": 8.0,
+        "source_subject": "Tin học",
+        "target_subject": "Toán",
+    }
+    response = client.post("/api/predict/cold-start/percentile-equating", json=body)
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["success"] is True
+    data = payload["data"]
+    assert data["source_subject"] == "Tin học"
+    assert 0.0 <= data["equated_score"] <= 10.0
+
+
+def test_admission_chance_includes_trend_and_confidence(client, sample_academic_scores):
+    body = {
+        "academic_scores": sample_academic_scores,
+        "target_major_code": "GHA14",
+        "admission_method": "PT1",
+    }
+    response = client.post("/api/predict/admission-chance", json=body)
+    assert response.status_code == 200
+    data = response.json()["data"]
+    assert data["confidence_level"] == "HIGH"
+    assert data["trend_insight"] is not None
+    assert len(data["trend_insight"]) > 0
