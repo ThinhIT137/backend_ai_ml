@@ -43,7 +43,7 @@ setup_cors(app)
 register_exception_handlers(app)
 
 
-@app.get("/", tags=["General"])
+@app.api_route("/", methods=["GET", "HEAD"], tags=["General"])
 async def root():
     return {
         "success": True,
@@ -53,9 +53,11 @@ async def root():
     }
 
 
-@app.get("/health", tags=["General"])
+@app.api_route("/api/health", methods=["GET", "HEAD"], tags=["General"])
+@app.api_route("/health", methods=["GET", "HEAD"], tags=["General"])
 async def health_check():
     return {
+        "status": "ok",
         "success": True,
         "data": {
             "status": "healthy",

@@ -16,8 +16,21 @@ def test_health_endpoint(client):
     assert response.status_code == 200
     payload = response.json()
     assert payload["success"] is True
+    assert payload["status"] == "ok"
     assert payload["data"]["status"] == "healthy"
     assert "version" in payload["data"]
+
+    head_response = client.head("/health")
+    assert head_response.status_code == 200
+
+    api_health = client.get("/api/health")
+    assert api_health.status_code == 200
+
+    api_head = client.head("/api/health")
+    assert api_head.status_code == 200
+
+    root_head = client.head("/")
+    assert root_head.status_code == 200
 
 
 def test_mbti_questions_endpoint(client):
