@@ -1,5 +1,5 @@
 from typing import Any, Dict, List, Literal, Optional, Union
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, computed_field, field_validator
 
 
 class MBTIQuestion(BaseModel):
@@ -15,6 +15,24 @@ class MBTIQuestion(BaseModel):
     context_field: Optional[str] = Field(
         None, description="Lĩnh vực ngữ cảnh tại UTC (Kỹ thuật, Công nghệ, Xây dựng, Kinh tế...)"
     )
+
+    @computed_field
+    def question(self) -> str:
+        return self.text
+
+    @computed_field
+    def option_a(self) -> Dict[str, str]:
+        return {"text": "Đồng ý", "trait": self.positive_trait}
+
+    @computed_field
+    def option_b(self) -> Dict[str, str]:
+        opposites = {
+            "E": "I", "I": "E",
+            "S": "N", "N": "S",
+            "T": "F", "F": "T",
+            "J": "P", "P": "J",
+        }
+        return {"text": "Không đồng ý", "trait": opposites.get(self.positive_trait, "")}
 
 
 class MBTIQuestionListResponse(BaseModel):
@@ -56,7 +74,20 @@ class MBTISubmitRequest(BaseModel):
     @classmethod
     def normalize_answers(cls, v: Any) -> Any:
         if isinstance(v, dict):
-            return [{"question_id": int(qid), "score": int(val)} for qid, val in v.items()]
+            res = []
+            for qid, val in v.items():
+                if isinstance(val, str):
+                    val_clean = val.strip().upper()
+                    if val_clean == "A":
+                        score = 5
+                    elif val_clean == "B":
+                        score = 1
+                    else:
+                        score = int(val_clean)
+                else:
+                    score = int(val)
+                res.append({"question_id": int(qid), "score": score})
+            return res
         return v
 
 
@@ -90,6 +121,14 @@ class MajorRecommendation(BaseModel):
     career_prospects: List[str] = Field(
         default_factory=list, description="Vị trí việc làm tiêu biểu sau khi tốt nghiệp"
     )
+
+    @computed_field
+    def ma_chuong_trinh(self) -> str:
+        return self.major_code
+
+    @computed_field
+    def ten_chuong_trinh(self) -> str:
+        return self.major_name
 
 
 class CareerTrajectoryItem(BaseModel):
@@ -127,6 +166,31 @@ class MBTIResultData(BaseModel):
         default_factory=list, description="Bản đồ lộ trình chức danh nghề nghiệp tương lai"
     )
     ai_advice: Optional[str] = Field(None, description="Lời khuyên định hướng chuyên sâu từ chuyên gia AI")
+
+    @computed_field
+    def title(self) -> str:
+        return self.type_name
+
+    @computed_field
+    def description(self) -> str:
+        return self.personality_summary
+
+    @computed_field
+    def work_environment(self) -> str:
+        return self.suitable_environment
+
+    @computed_field
+    def scores(self) -> Dict[str, float]:
+        return {
+            "E": self.dimension_scores.extraversion,
+            "I": self.dimension_scores.introversion,
+            "S": self.dimension_scores.sensing,
+            "N": self.dimension_scores.intuition,
+            "T": self.dimension_scores.thinking,
+            "F": self.dimension_scores.feeling,
+            "J": self.dimension_scores.judging,
+            "P": self.dimension_scores.perceiving,
+        }
 
 
 class MBTIResultResponse(BaseModel):

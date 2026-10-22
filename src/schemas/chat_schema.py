@@ -34,6 +34,10 @@ class ChatResponseData(BaseModel):
     sources: List[ChatSourceItem] = Field(default_factory=list, description="Danh sách tài liệu tham chiếu")
     suggested_questions: List[str] = Field(default_factory=list, description="Gợi ý câu hỏi tiếp theo")
 
+    @computed_field
+    def reply(self) -> str:
+        return self.answer
+
 
 class ChatResponse(BaseModel):
     success: bool = True

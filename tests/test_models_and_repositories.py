@@ -290,6 +290,22 @@ def test_admission_chance_request():
     assert req.priority_region == "KV2"
     assert req.academic_scores["toan"] == 8.5
 
+    boundary_req = AdmissionChanceRequest(
+        academic_scores={"toan": 0.0, "vat_ly": 10.0},
+        target_major_code="GHA14",
+    )
+    assert boundary_req.academic_scores["toan"] == 0.0
+    assert boundary_req.academic_scores["vat_ly"] == 10.0
+
+    with pytest.raises(ValidationError):
+        AdmissionChanceRequest(academic_scores={"toan": -1.0})
+
+    with pytest.raises(ValidationError):
+        AdmissionChanceRequest(academic_scores={"toan": 11.0})
+
+    with pytest.raises(ValidationError):
+        AdmissionChanceRequest(academic_scores={})
+
 
 def test_major_chance_result():
     mcr = MajorChanceResult(

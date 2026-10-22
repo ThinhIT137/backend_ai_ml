@@ -16,7 +16,8 @@ class NvidiaLLMClient:
         base_url: Optional[str] = None,
         default_model: Optional[str] = None,
     ):
-        self.api_key = api_key or settings.NVIDIA_API_KEY
+        raw_key = api_key or settings.NVIDIA_API_KEY
+        self.api_key = raw_key.replace("Bearer ", "").strip() if raw_key else ""
         self.base_url = base_url or settings.NVIDIA_BASE_URL
         self.default_model = default_model or settings.NVIDIA_MODEL
 
