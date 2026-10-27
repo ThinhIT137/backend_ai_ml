@@ -1,5 +1,5 @@
 from typing import Any, Dict, List, Literal, Optional, Union
-from pydantic import BaseModel, ConfigDict, Field, computed_field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, computed_field, field_validator, field_serializer
 
 
 class MBTIQuestion(BaseModel):
@@ -148,6 +148,17 @@ class MBTIResultData(BaseModel):
     archetype_group: str = Field(
         ..., description="Nhóm khí chất (Nhà Phân tích, Nhà Thực thi, Nhà Thám hiểm, Nhà Ngoại giao)"
     )
+
+    @field_serializer("cccd", when_used="json")
+    def serialize_cccd(self, v: Optional[str]) -> Optional[str]:
+        if not v:
+            return None
+        cleaned = str(v).strip()
+        if len(cleaned) <= 4:
+            return "****"
+        if len(cleaned) <= 6:
+            return f"{cleaned[:2]}***{cleaned[-1:]}"
+        return f"{cleaned[:4]}******{cleaned[-2:]}"
     personality_summary: str = Field(..., description="Mô tả tổng quan nét tính cách đặc trưng")
     strengths: List[str] = Field(..., description="Điểm mạnh nổi bật trong tư duy kỹ thuật & làm việc")
     weaknesses: List[str] = Field(default_factory=list, description="Điểm cần lưu ý và rèn luyện thêm")
@@ -207,6 +218,17 @@ class MBTIHistoryItem(BaseModel):
     archetype_group: Optional[str] = Field(None, description="Nhóm khí chất")
     thoi_gian_thuc_hien: Optional[str] = Field(None, description="Thời điểm làm trắc nghiệm")
     top_majors: List[str] = Field(default_factory=list, description="Danh sách tên các ngành được gợi ý hàng đầu")
+
+    @field_serializer("cccd", when_used="json")
+    def serialize_history_cccd(self, v: Optional[str]) -> Optional[str]:
+        if not v:
+            return None
+        cleaned = str(v).strip()
+        if len(cleaned) <= 4:
+            return "****"
+        if len(cleaned) <= 6:
+            return f"{cleaned[:2]}***{cleaned[-1:]}"
+        return f"{cleaned[:4]}******{cleaned[-2:]}"
 
 
 class MBTIHistoryResponse(BaseModel):

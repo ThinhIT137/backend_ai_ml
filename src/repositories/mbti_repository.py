@@ -156,7 +156,7 @@ class MBTIRepository:
         if not conditions:
             return []
 
-        where_clause = " OR ".join(conditions)
+        where_clause = " AND ".join(conditions)
         query = (
             f"SELECT ma_ket_qua, cccd, session_id, nhom_tinh_cach, goi_y_nganh, thoi_gian_thuc_hien, create_at "
             f"FROM ket_qua_trac_nghiem "
