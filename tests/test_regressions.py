@@ -153,3 +153,31 @@ def test_mbti_identity_data_masking_public_vs_internal(client, sample_mbti_answe
 def test_mbti_history_query_validation(client):
     res_invalid = client.get("/api/mbti/history?cccd=invalid'--")
     assert res_invalid.status_code == 422
+
+def test_rag_chatbot_refuses_math_problem():
+    req = ChatRequest(question="Giải giúp tôi phương trình x^2 - 4x + 3 = 0")
+    res = chat_service.ask(req)
+    assert "không thể trả lời các câu hỏi không liên quan tới ngành học" in res.answer
+    assert len(res.sources) == 0
+
+
+def test_rag_chatbot_refuses_other_universities():
+    req = ChatRequest(question="Gợi ý các ngành học hot của trường Bách Khoa và NEU")
+    res = chat_service.ask(req)
+    assert "không thể trả lời các câu hỏi không liên quan tới ngành học" in res.answer
+    assert len(res.sources) == 0
+
+
+def test_rag_chatbot_refuses_coding_problem():
+    req = ChatRequest(question="Viết code python giải bài toán sắp xếp mảng")
+    res = chat_service.ask(req)
+    assert "không thể trả lời các câu hỏi không liên quan tới ngành học" in res.answer
+    assert len(res.sources) == 0
+
+
+def test_rag_chatbot_allows_valid_utc_questions():
+    req = ChatRequest(question="Điểm chuẩn ngành Logistics của UTC năm 2025 là bao nhiêu?")
+    with patch("src.services.chat_service.llm_client.generate", return_value={"choices": [{"message": {"content": "Điểm chuẩn UTC Logistics 2025 là 25.5"}}]}) as mock_llm:
+        res = chat_service.ask(req)
+        assert mock_llm.called
+        assert "25.5" in res.answer
