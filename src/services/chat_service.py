@@ -5,9 +5,11 @@ from typing import Any, Dict, List, Optional
 from src.core.exceptions import AppException, NotFoundException
 from src.ml.llm.loader import llm_client
 from src.ml.llm.prompt_templates import (
+    OUT_OF_SCOPE_REFUSAL,
     SYSTEM_PROMPT_UTC_ADVISOR,
     build_rag_prompt,
     get_default_suggested_questions,
+    is_out_of_scope_query,
 )
 from src.ml.llm.rag import rag_pipeline
 from src.repositories.chat_repository import chat_repository
@@ -41,6 +43,15 @@ class ChatService:
     def ask(self, request: ChatRequest) -> ChatResponseData:
         active_session = request.session_id or f"chat_{uuid.uuid4().hex[:12]}"
         query = request.question or request.message or ""
+
+        if is_out_of_scope_query(query):
+            suggested = get_default_suggested_questions(query)
+            return ChatResponseData(
+                answer=OUT_OF_SCOPE_REFUSAL,
+                session_id=active_session,
+                sources=[],
+                suggested_questions=suggested,
+            )
 
         retrieved_chunks = rag_pipeline.retrieve(query=query, top_k=3)
 

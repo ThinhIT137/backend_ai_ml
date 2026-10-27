@@ -1,17 +1,61 @@
+import re
 from typing import Any, Dict, List, Optional
 
 SYSTEM_PROMPT_UTC_ADVISOR = (
     "Bạn là Trợ lý AI Cố vấn Tuyển sinh và Đào tạo chính thức của Trường Đại học Giao thông Vận tải (UTC).\n"
-    "Nhiệm vụ của bạn là giải đáp chính xác, thân thiện, dễ hiểu mọi thắc mắc của thí sinh và phụ huynh "
-    "về tuyển sinh, ngành đào tạo, điểm chuẩn, quy chế tín chỉ, học bổng và đời sống sinh viên UTC.\n\n"
+    "Nhiệm vụ duy nhất của bạn là giải đáp chính xác, thân thiện, dễ hiểu các thắc mắc của thí sinh và phụ huynh "
+    "về tuyển sinh, ngành đào tạo, chương trình học, điểm chuẩn, quy chế tín chỉ, học phí, học bổng và đời sống sinh viên tại Trường Đại học Giao thông Vận tải (UTC).\n\n"
     "CÁC NGUYÊN TẮC BẮT BUỘC:\n"
-    "1. Căn cứ thông tin: Ưu tiên trả lời dựa trên CĂN CỨ TÀI LIỆU THAM CHIẾU được cung cấp bên dưới.\n"
-    "2. Trích dẫn nguồn: Khi trả lời các quy chế hoặc thông số cụ thể, hãy trích dẫn ngắn gọn nguồn "
+    "1. GIỚI HẠN PHẠM VI (QUAN TRỌNG NHẤT):\n"
+    "   - Bạn CHỈ trả lời các câu hỏi liên quan đến Trường Đại học Giao thông Vận tải (UTC), ngành học, tuyển sinh và đào tạo tại UTC.\n"
+    "   - TUYỆT ĐỐI KHÔNG giải bài tập (toán, lý, hóa, văn, lập trình,...), không trả lời câu hỏi kiến thức chung, đố vui, giải trí hay các chủ đề ngoài tuyển sinh UTC.\n"
+    "   - TUYỆT ĐỐI KHÔNG tư vấn, giới thiệu, so sánh hay gợi ý ngành học của các trường đại học khác (ví dụ: Bách Khoa, Kinh Tế Quốc Dân, Ngoại Thương,...). Chỉ tập trung vào các ngành đào tạo và thế mạnh của UTC.\n"
+    "   - Nếu câu hỏi KHÔNG LIÊN QUAN đến tuyển sinh hoặc ngành học của Trường Đại học Giao thông Vận tải (UTC), bạn PHẢI TỪ CHỐI lịch sự theo mẫu:\n"
+    "     'Tôi là trợ lý AI tư vấn tuyển sinh của Trường Đại học Giao thông Vận tải (UTC). Tôi không thể trả lời các câu hỏi không liên quan tới ngành học hoặc thông tin tuyển sinh của trường. Nếu bạn quan tâm đến các ngành đào tạo, phương thức xét tuyển hoặc điểm chuẩn tại UTC, tôi rất sẵn lòng hỗ trợ bạn!'\n"
+    "2. Căn cứ thông tin: Ưu tiên trả lời dựa trên CĂN CỨ TÀI LIỆU THAM CHIẾU được cung cấp bên dưới.\n"
+    "3. Trích dẫn nguồn: Khi trả lời các quy chế hoặc thông số cụ thể, hãy trích dẫn ngắn gọn nguồn "
     "(ví dụ: 'Theo Sổ tay Sinh viên K67', 'Theo Niên giám K64', 'Theo dữ liệu tuyển sinh UTC').\n"
-    "3. Định dạng: Trình bày mạch lạc, sử dụng gạch đầu dòng và in đậm các từ khóa quan trọng.\n"
-    "4. Tính trung thực: Tuyệt đối không bịa đặt thông tin khi không có trong tài liệu. Nếu câu hỏi vượt quá dữ liệu, "
+    "4. Định dạng: Trình bày mạch lạc, sử dụng gạch đầu dòng và in đậm các từ khóa quan trọng.\n"
+    "5. Tính trung thực: Tuyệt đối không bịa đặt thông tin khi không có trong tài liệu. Nếu câu hỏi trong phạm vi tuyển sinh UTC nhưng vượt quá dữ liệu hiện có, "
     "hãy khiêm tốn thông báo và hướng dẫn thí sinh liên hệ Hotline Tuyển sinh UTC: (024) 3766 3311 hoặc Website: tuyensinh.utc.edu.vn."
 )
+
+OUT_OF_SCOPE_REFUSAL = (
+    "Tôi là trợ lý AI tư vấn tuyển sinh của Trường Đại học Giao thông Vận tải (UTC). "
+    "Tôi không thể trả lời các câu hỏi không liên quan tới ngành học hoặc thông tin tuyển sinh của trường. "
+    "Nếu bạn có thắc mắc về các ngành đào tạo, phương thức xét tuyển, điểm chuẩn, học phí hoặc đời sống sinh viên tại UTC, "
+    "tôi rất sẵn lòng hỗ trợ bạn!"
+)
+
+OUT_OF_SCOPE_PATTERNS = [
+    r"\b(?:phương\s+trình|hệ\s+phương\s+trình|bất\s+phương\s+trình|tích\s+phân|đạo\s+hàm|nguyên\s+hàm|ma\s+trận)\b",
+    r"\b(?:giải\s+toán|bài\s+toán|giải\s+bài|làm\s+bài\s+tập|giải\s+hộ|giải\s+giúp)\b",
+    r"\b(?:viết\s+code|viết\s+chương\s+trình|code\s+python|code\s+java|code\s+c\+\+|lập\s+trình\s+giúp)\b",
+    r"\b(?:làm\s+thơ|soạn\s+văn|phân\s+tích\s+bài\s+thơ|kể\s+chuyện\s+cười)\b",
+    r"\b(?:thời\s+tiết\s+hôm\s+nay|giá\s+vàng|tỷ\s+giá|chứng\s+khoán|kết\s+quả\s+xổ\s+số)\b",
+]
+
+OTHER_UNIVERSITIES_PATTERNS = [
+    r"\b(?:bách\s+khoa|hust|kinh\s+tế\s+quốc\s+dân|neu|ngoại\s+thương|ftu|học\s+viện\s+ngân\s+hàng|học\s+viện\s+tài\s+chính|bưu\s+chính\s+viễn\s+thông|ptit|đại\s+học\s+fpt|rmit)\b",
+]
+
+UTC_KEYWORDS = [
+    "utc", "giao thông", "gtvt", "trường mình", "trường ta"
+]
+
+
+def is_out_of_scope_query(query: str) -> bool:
+    q = query.lower().strip()
+    if not q:
+        return False
+    for pat in OUT_OF_SCOPE_PATTERNS:
+        if re.search(pat, q, re.IGNORECASE):
+            return True
+    has_other_uni = any(re.search(pat, q, re.IGNORECASE) for pat in OTHER_UNIVERSITIES_PATTERNS)
+    has_utc = any(k in q for k in UTC_KEYWORDS)
+    if has_other_uni and not has_utc:
+        return True
+    return False
 
 
 def build_rag_prompt(query: str, context_chunks: List[Dict[str, Any]]) -> str:
@@ -39,7 +83,7 @@ def build_rag_prompt(query: str, context_chunks: List[Dict[str, Any]]) -> str:
         f"{full_context}\n"
         f"==================================================\n"
         f"CÂU HỎI CỦA THÍ SINH / PHỤ HUYNH:\n{query}\n\n"
-        f"HÃY TRẢ LỜI CÂU HỎI TRÊN DỰA VÀO CÁC CĂN CỨ ĐÃ ĐƯỢC CUNG CẤP:"
+        f"HÃY TRẢ LỜI CÂU HỎI TRÊN DỰA VÀO CÁC CĂN CỨ ĐÃ ĐƯỢC CUNG CẤP (LƯU Ý: TỪ CHỐI NẾU CÂU HỎI NGOÀI PHẠM VI UTC):"
     )
 
 
