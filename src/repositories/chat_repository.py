@@ -140,12 +140,15 @@ class ChatRepository:
             params.append(trang_thai)
         if not updates:
             return self.get_tri_thuc_by_id(ma_tri_thuc)
+        allowed_columns = {"chu_de", "cau_hoi_mau", "noi_dung", "trang_thai"}
+        for u in updates:
+            col_name = u.split("=")[0].strip()
+            if col_name not in allowed_columns:
+                raise ValueError("Cột cập nhật không hợp lệ")
         params.append(ma_tri_thuc)
-        query = (
-            f"UPDATE tri_thuc_ai SET {', '.join(updates)} "
-            f"WHERE ma_tri_thuc = %s "
-            f"RETURNING ma_tri_thuc, chu_de, cau_hoi_mau, noi_dung, trang_thai, create_at;"
-        )
+        set_clause = ", ".join(updates)
+        query_format = "UPDATE tri_thuc_ai SET %s WHERE ma_tri_thuc = %%s RETURNING ma_tri_thuc, chu_de, cau_hoi_mau, noi_dung, trang_thai, create_at;"
+        query = query_format % (set_clause,)
         try:
             with get_db_connection() as conn:
                 with conn.cursor() as cur:

@@ -23,6 +23,17 @@ from src.repositories.major_repository import major_repository
 from src.services.chat_service import chat_service
 
 
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["X-XSS-Protection"] = "1; mode=block"
+        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Content-Security-Policy"] = "default-src 'self'"
+        return response
+
 class HeadMethodMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         if request.method == "HEAD":
@@ -56,6 +67,7 @@ app = FastAPI(
 )
 
 app.add_middleware(HeadMethodMiddleware)
+app.add_middleware(SecurityHeadersMiddleware)
 setup_cors(app)
 register_exception_handlers(app)
 

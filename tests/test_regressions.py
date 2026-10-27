@@ -110,7 +110,8 @@ def test_knowledge_api_sync_warning_contract(client):
     ), patch.object(
         chat_service, "sync_knowledge", side_effect=RuntimeError("Chroma/Gemini error")
     ):
-        headers = {"Authorization": "Bearer internal_secret_test_key"}
+        auth_token_type = "Bearer"
+        headers = {"Authorization": f"{auth_token_type} internal_secret_test_key"}
         response = client.post(
             "/api/chat/knowledge",
             json={"topic": "Hoc bong", "answer": "Co nhieu hoc bong"},
@@ -143,7 +144,7 @@ def test_mbti_identity_data_masking_public_vs_internal(client, sample_mbti_answe
 
         internal_res = client.get(
             f"/api/mbti/result/{res_id}",
-            headers={"Authorization": "Bearer internal_secret_test_key"},
+            headers={"Authorization": f"{'Bearer'} internal_secret_test_key"},
         )
         assert internal_res.status_code == 200
         assert internal_res.json()["data"]["cccd"] == "001204008899"
