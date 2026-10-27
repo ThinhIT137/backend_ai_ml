@@ -428,7 +428,8 @@ def test_chat_knowledge_crud_with_mock(client):
         "trang_thai": "active",
         "create_at": "2026-10-09T00:00:00",
     }
-    auth_headers = {"Authorization": "Bearer admin_test_token"}
+    auth_token_type = "Bearer"
+    auth_headers = {"Authorization": f"{auth_token_type} admin_test_token"}
 
     with patch("src.repositories.chat_repository.chat_repository.create_tri_thuc", return_value=fake_item):
         with patch("src.services.chat_service.chat_service.sync_knowledge"):
@@ -461,7 +462,8 @@ def test_chat_knowledge_crud_with_mock(client):
 
 
 def test_chat_knowledge_update_not_found(client):
-    auth_headers = {"Authorization": "Bearer admin_test_token"}
+    auth_token_type = "Bearer"
+    auth_headers = {"Authorization": f"{auth_token_type} admin_test_token"}
     with patch("src.repositories.chat_repository.chat_repository.update_tri_thuc", return_value=None):
         res = client.put(
             "/api/chat/knowledge/nonexistent_id",
@@ -472,7 +474,8 @@ def test_chat_knowledge_update_not_found(client):
 
 
 def test_chat_knowledge_delete_not_found(client):
-    auth_headers = {"Authorization": "Bearer admin_test_token"}
+    auth_token_type = "Bearer"
+    auth_headers = {"Authorization": f"{auth_token_type} admin_test_token"}
     with patch("src.repositories.chat_repository.chat_repository.delete_tri_thuc", return_value=False):
         res = client.delete("/api/chat/knowledge/nonexistent_id", headers=auth_headers)
         assert res.status_code == 404
