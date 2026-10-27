@@ -12,6 +12,18 @@ from src.schemas.mbti_schema import (
 
 logger = logging.getLogger(__name__)
 
+def mask_cccd(cccd: Optional[str]) -> Optional[str]:
+    if not cccd:
+        return None
+    cleaned = str(cccd).strip()
+    if not cleaned:
+        return None
+    if len(cleaned) <= 4:
+        return "****"
+    if len(cleaned) <= 6:
+        return f"{cleaned[:2]}***{cleaned[-1:]}"
+    return f"{cleaned[:4]}******{cleaned[-2:]}"
+
 
 class MBTIService:
     def get_questions(self) -> List[MBTIQuestion]:
@@ -67,21 +79,39 @@ class MBTIService:
         logger.info(
             f"Đã xử lý bài thi MBTI cho thí sinh '{request.student_name or 'Ẩn danh'}': Kết quả {result.mbti_type} ({result.type_name}), mã kết quả: {saved_id}"
         )
+        if result.cccd:
+            result.cccd = mask_cccd(result.cccd)
         return result
 
-    def get_result(self, result_id: str) -> MBTIResultData:
+    def get_result(self, result_id: str, mask_pii: bool = True) -> MBTIResultData:
         data = mbti_repository.get_result_by_id(result_id)
         if not data:
             raise NotFoundException(f"Không tìm thấy kết quả trắc nghiệm với mã: {result_id}")
-        return MBTIResultData.model_validate(data)
+        obj = MBTIResultData.model_validate(data)
+        if mask_pii and obj.cccd:
+            obj.cccd = mask_cccd(obj.cccd)
+        return obj
 
     def get_history(
-        self, session_id: Optional[str] = None, cccd: Optional[str] = None
+        self,
+        session_id: Optional[str] = None,
+        cccd: Optional[str] = None,
+        mask_pii: bool = True,
     ) -> List[MBTIHistoryItem]:
         if not session_id and not cccd:
             raise ValidationException("Cần cung cấp ít nhất session_id hoặc cccd để tra cứu lịch sử")
+        if cccd:
+            cleaned_cccd = cccd.strip()
+            if not cleaned_cccd.isalnum() or len(cleaned_cccd) > 20:
+                raise ValidationException("Số CCCD tra cứu không hợp lệ")
         items = mbti_repository.get_history(session_id=session_id, cccd=cccd)
-        return [MBTIHistoryItem.model_validate(i) for i in items]
+        validated_items = []
+        for i in items:
+            item_obj = MBTIHistoryItem.model_validate(i)
+            if mask_pii and item_obj.cccd:
+                item_obj.cccd = mask_cccd(item_obj.cccd)
+            validated_items.append(item_obj)
+        return validated_items
 
 
 mbti_service = MBTIService()

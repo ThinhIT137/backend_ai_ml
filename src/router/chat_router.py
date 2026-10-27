@@ -76,5 +76,12 @@ async def update_knowledge(ma_tri_thuc: str, request: KnowledgeUpdateRequest):
     dependencies=[Depends(verify_internal_api_key)],
 )
 async def delete_knowledge(ma_tri_thuc: str):
-    chat_service.delete_knowledge(ma_tri_thuc)
-    return {"success": True, "message": f"Đã xóa thành công mục tri thức {ma_tri_thuc}"}
+    warning = chat_service.delete_knowledge(ma_tri_thuc)
+    res = {
+        "success": True,
+        "message": f"Đã xóa thành công mục tri thức {ma_tri_thuc}",
+    }
+    if warning:
+        res["sync_warning"] = warning
+        res["syncWarning"] = warning
+    return res

@@ -39,3 +39,31 @@ async def verify_internal_api_key(
         raise UnauthorizedException(message="Khóa API hoặc token xác thực không chính xác")
 
     return True
+
+async def get_optional_auth_context(
+    authorization: Optional[str] = Header(None, alias="Authorization"),
+    x_internal_api_key: Optional[str] = Header(None, alias="X-Internal-API-Key"),
+    x_api_key: Optional[str] = Header(None, alias="X-API-Key"),
+    x_session_id: Optional[str] = Header(None, alias="X-Session-Id"),
+) -> dict:
+    is_authenticated = False
+    token = None
+    if authorization:
+        parts = authorization.strip().split()
+        if len(parts) == 2 and parts[0].lower() in ["bearer", "token"]:
+            token = parts[1]
+        else:
+            token = authorization.strip()
+    elif x_internal_api_key:
+        token = x_internal_api_key.strip()
+    elif x_api_key:
+        token = x_api_key.strip()
+
+    if token and settings.INTERNAL_API_KEY and token == settings.INTERNAL_API_KEY:
+        is_authenticated = True
+
+    return {
+        "is_authenticated": is_authenticated,
+        "session_id": x_session_id.strip() if x_session_id else None,
+    }
+

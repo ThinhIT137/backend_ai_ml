@@ -53,6 +53,7 @@ class KnowledgeItemSchema(BaseModel):
     noi_dung: str = Field(..., description="Nội dung thông tin / câu trả lời")
     trang_thai: str = Field(default="active", description="Trạng thái kích hoạt")
     create_at: Optional[str] = Field(None, description="Thời gian tạo")
+    sync_warning: Optional[str] = Field(None, description="Cảnh báo đồng bộ RAG nếu có")
 
     @computed_field
     def id(self) -> Optional[str]:
@@ -73,6 +74,10 @@ class KnowledgeItemSchema(BaseModel):
     @computed_field
     def status(self) -> str:
         return self.trang_thai
+
+    @computed_field
+    def syncWarning(self) -> Optional[str]:
+        return self.sync_warning
 
 
 class KnowledgeCreateRequest(BaseModel):

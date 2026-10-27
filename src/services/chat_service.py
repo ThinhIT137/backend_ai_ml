@@ -114,8 +114,13 @@ class ChatService:
         )
         if not item:
             raise AppException("Không thể thêm mới mục tri thức vào CSDL")
-        self.sync_knowledge()
-        return KnowledgeItemSchema(**item)
+        sync_warning = None
+        try:
+            self.sync_knowledge()
+        except Exception as e:
+            logger.warning(f"Lỗi đồng bộ RAG sau khi thêm tri thức: {str(e)}")
+            sync_warning = f"Đã lưu CSDL thành công nhưng đồng bộ RAG thất bại: {str(e)}"
+        return KnowledgeItemSchema(**item, sync_warning=sync_warning)
 
     def update_knowledge(self, ma_tri_thuc: str, req: KnowledgeUpdateRequest) -> KnowledgeItemSchema:
         item = chat_repository.update_tri_thuc(
@@ -127,15 +132,25 @@ class ChatService:
         )
         if not item:
             raise NotFoundException(f"Không tìm thấy bản ghi tri thức {ma_tri_thuc}")
-        self.sync_knowledge()
-        return KnowledgeItemSchema(**item)
+        sync_warning = None
+        try:
+            self.sync_knowledge()
+        except Exception as e:
+            logger.warning(f"Lỗi đồng bộ RAG sau khi cập nhật tri thức: {str(e)}")
+            sync_warning = f"Đã cập nhật CSDL thành công nhưng đồng bộ RAG thất bại: {str(e)}"
+        return KnowledgeItemSchema(**item, sync_warning=sync_warning)
 
-    def delete_knowledge(self, ma_tri_thuc: str) -> bool:
+    def delete_knowledge(self, ma_tri_thuc: str) -> Optional[str]:
         ok = chat_repository.delete_tri_thuc(ma_tri_thuc)
         if not ok:
             raise NotFoundException(f"Không tìm thấy hoặc không thể xóa bản ghi {ma_tri_thuc}")
-        self.sync_knowledge()
-        return True
+        sync_warning = None
+        try:
+            self.sync_knowledge()
+        except Exception as e:
+            logger.warning(f"Lỗi đồng bộ RAG sau khi xóa tri thức: {str(e)}")
+            sync_warning = f"Đã xóa CSDL thành công nhưng đồng bộ RAG thất bại: {str(e)}"
+        return sync_warning
 
 
 chat_service = ChatService()

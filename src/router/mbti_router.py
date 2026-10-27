@@ -1,5 +1,6 @@
 from typing import Optional
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Depends, status
+from src.core.security import get_optional_auth_context
 from src.schemas.mbti_schema import (
     MBTIDetailResponse,
     MBTIHistoryResponse,
@@ -43,8 +44,11 @@ async def submit_mbti(request: MBTISubmitRequest):
     response_model=MBTIDetailResponse,
     status_code=status.HTTP_200_OK,
 )
-async def get_mbti_result(result_id: str):
-    data = mbti_service.get_result(result_id)
+async def get_mbti_result(
+    result_id: str,
+    auth_ctx: dict = Depends(get_optional_auth_context),
+):
+    data = mbti_service.get_result(result_id, mask_pii=not auth_ctx.get("is_authenticated"))
     return MBTIDetailResponse(success=True, data=data)
 
 
@@ -56,6 +60,11 @@ async def get_mbti_result(result_id: str):
 async def get_mbti_history(
     session_id: Optional[str] = None,
     cccd: Optional[str] = None,
+    auth_ctx: dict = Depends(get_optional_auth_context),
 ):
-    history = mbti_service.get_history(session_id=session_id, cccd=cccd)
+    history = mbti_service.get_history(
+        session_id=session_id or auth_ctx.get("session_id"),
+        cccd=cccd,
+        mask_pii=not auth_ctx.get("is_authenticated"),
+    )
     return MBTIHistoryResponse(success=True, total=len(history), data=history)
