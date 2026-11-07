@@ -26,7 +26,7 @@ class Settings(BaseSettings):
 
     NVIDIA_API_KEY: str = ""
     NVIDIA_BASE_URL: str = "https://integrate.api.nvidia.com/v1/chat/completions"
-    NVIDIA_MODEL: str = "meta/llama-3.2-11b-vision-instruct"
+    NVIDIA_MODEL: str = "nvidia/nemotron-3.5-bolt-e4b"
     LLM_TEMPERATURE: float = 0.7
     LLM_TOP_P: float = 1.0
     LLM_MAX_TOKENS: int = 512
