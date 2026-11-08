@@ -72,7 +72,8 @@ class ChatService:
             )
             choices = resp.get("choices", [])
             if choices:
-                answer = choices[0].get("message", {}).get("content", "").strip()
+                raw_text = choices[0].get("message", {}).get("content", "").strip()
+                answer = raw_text.replace("**", "")
         except Exception as e:
             logger.error(f"Lỗi gọi LLM Client trong ChatService: {str(e)}")
             answer = (
